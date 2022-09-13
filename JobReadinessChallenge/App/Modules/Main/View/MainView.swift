@@ -59,6 +59,16 @@ class MainView: UIView {
         return label
     }()
     
+    private lazy var categoriesCollection: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collection.translatesAutoresizingMaskIntoConstraints = false
+        return collection
+    }()
+    
+    private let categoriesService = CategoriesService()
+        
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
@@ -73,6 +83,8 @@ class MainView: UIView {
         self.addSubview(locationView)
         self.addSubview(bannerView)
         self.addSubview(shippingView)
+        self.addSubview(categoriesCollection)
+        setupCollectionView()
     }
     
     private func setupConstraints(){
@@ -101,7 +113,39 @@ class MainView: UIView {
             
             shippingLabel.leadingAnchor.constraint(equalTo: shippingView.leadingAnchor, constant: 44),
             shippingLabel.trailingAnchor.constraint(equalTo: shippingView.trailingAnchor, constant: -7),
-            shippingLabel.centerYAnchor.constraint(equalTo: shippingView.centerYAnchor)
+            shippingLabel.centerYAnchor.constraint(equalTo: shippingView.centerYAnchor),
+            
+            categoriesCollection.topAnchor.constraint(equalTo: shippingView.bottomAnchor, constant: 15),
+            categoriesCollection.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 17),
+            categoriesCollection.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -17),
+            categoriesCollection.heightAnchor.constraint(equalToConstant: 70)
+            
         ])
+    }
+    #warning("set equal spacing")
+    private func setupCollectionView(){
+        categoriesCollection.delegate = self
+        categoriesCollection.dataSource = self
+        categoriesCollection.register(CategoryCollectionViewCell.self, forCellWithReuseIdentifier: CategoryCollectionViewCell.identifier)
+        categoriesCollection.backgroundColor = .appBackground
+    }
+}
+
+extension MainView: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return categoriesService.getCategoriesCount()
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 56, height: 70)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        if let cell = categoriesCollection.dequeueReusableCell(withReuseIdentifier: CategoryCollectionViewCell.identifier, for: indexPath) as? CategoryCollectionViewCell {
+            let data = categoriesService.categories[indexPath.item]
+            cell.setupCell(imageName: data.imageName, title: data.title)
+            return cell
+        }
+        fatalError("Unable to dequeue subclassed cell")
     }
 }
