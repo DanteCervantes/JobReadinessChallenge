@@ -31,7 +31,9 @@ class TabBarViewController: UITabBarController {
         let moreVC = UINavigationController(rootViewController: MoreViewController())
         moreVC.tabBarItem = UITabBarItem(title: "Más", image: UIImage(systemName: "text.justify"), selectedImage: nil)
         
-        
+        tabBar.backgroundColor = .white
+        tabBar.layer.borderWidth = 1
+        tabBar.layer.borderColor = UIColor.lightGray.cgColor
         viewControllers = [mainVC, moreVC]
     }
 }
