@@ -71,6 +71,8 @@ class SearchTextField: UITextField {
         self.layer.masksToBounds = false
         self.leftView = customLeftView
         self.leftViewMode = .always
+        self.placeholder = "Buscar en Mercado Libre"
+        self.font = .proximaNova
     }
     
     private func setupConstraints(){
