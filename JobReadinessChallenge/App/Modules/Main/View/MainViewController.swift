@@ -36,8 +36,6 @@ class MainViewController: UIViewController {
         return mainView
     }()
     
-   
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         searchTextfiled.delegate = self
