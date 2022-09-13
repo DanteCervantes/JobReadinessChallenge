@@ -10,7 +10,7 @@ import UIKit
 class MainViewController: UIViewController {
     
     private lazy var searchTextfiled: SearchTextField = {
-       let textField = SearchTextField()
+        let textField = SearchTextField()
         textField.placeholder = "Buscar en Mercado Libre"
         textField.icon = UIImage(systemName: "magnifyingglass")
         textField.iconColor = .gray
@@ -19,15 +19,21 @@ class MainViewController: UIViewController {
     
     private lazy var cartIcon: UIBarButtonItem = {
         let button = UIBarButtonItem()
-        button.image = UIImage(named: "Icon shape")
+        button.image = UIImage(named: "Cart Icon")
         button.tintColor = .black
         return button
     }()
     
     private lazy var statusBar: UIView = {
-       let view = UIView()
+        let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = .mlYellow
+        return view
+    }()
+    
+    private lazy var locationView: LocationView = {
+        let view = LocationView()
+        view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
@@ -39,7 +45,8 @@ class MainViewController: UIViewController {
     
     private func setupView(){
         self.view.addSubview(statusBar)
-        view.backgroundColor = .white
+        self.view.addSubview(locationView)
+        self.view.backgroundColor = .white
         self.navigationItem.titleView = searchTextfiled
         self.navigationItem.rightBarButtonItem = cartIcon
     }
@@ -47,7 +54,9 @@ class MainViewController: UIViewController {
     private func setupConstraints() {
         NSLayoutConstraint.activate([
             statusBar.widthAnchor.constraint(equalTo: view.widthAnchor),
-            statusBar.heightAnchor.constraint(equalToConstant: 20)
+            statusBar.heightAnchor.constraint(equalToConstant: 20),
+            locationView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
+            locationView.widthAnchor.constraint(equalTo: self.view.widthAnchor),
         ])
     }
     
