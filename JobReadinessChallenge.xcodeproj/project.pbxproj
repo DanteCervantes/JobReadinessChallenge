@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		1722726028D0104800177BF4 /* LocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1722725F28D0104800177BF4 /* LocationView.swift */; };
+		1722726328D028AB00177BF4 /* ProximaNova-RegularIt.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1722726228D028AB00177BF4 /* ProximaNova-RegularIt.ttf */; };
+		1722726628D02B7D00177BF4 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1722726528D02B7D00177BF4 /* Fonts.swift */; };
 		17DD079A28CF955700283E3F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17DD079928CF955700283E3F /* AppDelegate.swift */; };
 		17DD079C28CF955700283E3F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17DD079B28CF955700283E3F /* SceneDelegate.swift */; };
 		17DD07A328CF955800283E3F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17DD07A228CF955800283E3F /* Assets.xcassets */; };
@@ -21,6 +23,8 @@
 
 /* Begin PBXFileReference section */
 		1722725F28D0104800177BF4 /* LocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationView.swift; sourceTree = "<group>"; };
+		1722726228D028AB00177BF4 /* ProximaNova-RegularIt.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ProximaNova-RegularIt.ttf"; sourceTree = "<group>"; };
+		1722726528D02B7D00177BF4 /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		17DD079628CF955700283E3F /* JobReadinessChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JobReadinessChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		17DD079928CF955700283E3F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		17DD079B28CF955700283E3F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -45,6 +49,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1722726128D0287A00177BF4 /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				1722726228D028AB00177BF4 /* ProximaNova-RegularIt.ttf */,
+			);
+			path = Font;
+			sourceTree = "<group>";
+		};
+		1722726428D02B6E00177BF4 /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				1722726528D02B7D00177BF4 /* Fonts.swift */,
+			);
+			path = Font;
+			sourceTree = "<group>";
+		};
 		17DD078D28CF955700283E3F = {
 			isa = PBXGroup;
 			children = (
@@ -64,6 +84,7 @@
 		17DD079828CF955700283E3F /* JobReadinessChallenge */ = {
 			isa = PBXGroup;
 			children = (
+				1722726128D0287A00177BF4 /* Font */,
 				17DD07B028CF970200283E3F /* App */,
 				17DD079928CF955700283E3F /* AppDelegate.swift */,
 				17DD079B28CF955700283E3F /* SceneDelegate.swift */,
@@ -120,6 +141,7 @@
 		17DD07B928CFA61B00283E3F /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				1722726428D02B6E00177BF4 /* Font */,
 				17DD07BD28CFBA5200283E3F /* Color */,
 				17DD07BA28CFA62200283E3F /* Components */,
 			);
@@ -217,6 +239,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1722726328D028AB00177BF4 /* ProximaNova-RegularIt.ttf in Resources */,
 				17DD07A628CF955800283E3F /* LaunchScreen.storyboard in Resources */,
 				17DD07A328CF955800283E3F /* Assets.xcassets in Resources */,
 			);
@@ -236,6 +259,7 @@
 				17DD079A28CF955700283E3F /* AppDelegate.swift in Sources */,
 				17DD07B428CF972600283E3F /* TabBarViewController.swift in Sources */,
 				17DD079C28CF955700283E3F /* SceneDelegate.swift in Sources */,
+				1722726628D02B7D00177BF4 /* Fonts.swift in Sources */,
 				17DD07B728CF984200283E3F /* MainViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

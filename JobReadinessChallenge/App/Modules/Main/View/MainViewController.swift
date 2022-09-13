@@ -11,7 +11,6 @@ class MainViewController: UIViewController {
     
     private lazy var searchTextfiled: SearchTextField = {
         let textField = SearchTextField()
-        textField.placeholder = "Buscar en Mercado Libre"
         textField.icon = UIImage(systemName: "magnifyingglass")
         textField.iconColor = .gray
         return textField
