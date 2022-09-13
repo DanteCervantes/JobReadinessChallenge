@@ -10,16 +10,15 @@ import UIKit
 class SearchTableViewController: UITableViewController {
     
     var searchText: String?
+    let cellId = "cell"
+    var products = [Product]()
     
     let productService = ProductService()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        productService.getCategory(product: searchText!)
+        tableView.register(ProductTableViewCell.self, forCellReuseIdentifier: cellId)
+        createArray()
     }
     
     // MARK: - Table view cell
@@ -28,22 +27,25 @@ class SearchTableViewController: UITableViewController {
     }
 
     // MARK: - Table view data source
-
-    /*override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return products.count
     }
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
-    }*/
-
-    /*override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! ProductTableViewCell
+        let currentItem = products[indexPath.row]
+        cell.product = currentItem
         return cell
-    }*/
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 145
+    }
+    
+    func createArray(){
+        products.append(Product(image: "", name: "Carro", price: 59, description: "blah bla"))
+        products.append(Product(image: "", name:"iphone", price: 74, description: "rkov"))
+    }
     
 
     /*

@@ -19,6 +19,7 @@
 		1722728428D114E600177BF4 /* ProductService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1722728328D114E600177BF4 /* ProductService.swift */; };
 		1722728728D116DB00177BF4 /* AlamoAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1722728628D116DB00177BF4 /* AlamoAPIClient.swift */; };
 		1722728928D1189F00177BF4 /* MlCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1722728828D1189F00177BF4 /* MlCategory.swift */; };
+		1722728D28D134D000177BF4 /* ProductTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1722728C28D134D000177BF4 /* ProductTableViewCell.swift */; };
 		17DD079A28CF955700283E3F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17DD079928CF955700283E3F /* AppDelegate.swift */; };
 		17DD079C28CF955700283E3F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17DD079B28CF955700283E3F /* SceneDelegate.swift */; };
 		17DD07A328CF955800283E3F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17DD07A228CF955800283E3F /* Assets.xcassets */; };
@@ -44,6 +45,7 @@
 		1722728328D114E600177BF4 /* ProductService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductService.swift; sourceTree = "<group>"; };
 		1722728628D116DB00177BF4 /* AlamoAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlamoAPIClient.swift; sourceTree = "<group>"; };
 		1722728828D1189F00177BF4 /* MlCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MlCategory.swift; sourceTree = "<group>"; };
+		1722728C28D134D000177BF4 /* ProductTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductTableViewCell.swift; sourceTree = "<group>"; };
 		17DD079628CF955700283E3F /* JobReadinessChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JobReadinessChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		17DD079928CF955700283E3F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		17DD079B28CF955700283E3F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -235,6 +237,7 @@
 				17DD07BB28CFA64500283E3F /* SearchTextField.swift */,
 				1722725F28D0104800177BF4 /* LocationView.swift */,
 				1722727128D0C30100177BF4 /* CategoryCollectionViewCell.swift */,
+				1722728C28D134D000177BF4 /* ProductTableViewCell.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -398,6 +401,7 @@
 				17DD07C328CFC6C000283E3F /* MoreViewController.swift in Sources */,
 				1722726028D0104800177BF4 /* LocationView.swift in Sources */,
 				1722727E28D113D600177BF4 /* Product.swift in Sources */,
+				1722728D28D134D000177BF4 /* ProductTableViewCell.swift in Sources */,
 				17DD07BC28CFA64500283E3F /* SearchTextField.swift in Sources */,
 				1722727C28D1063300177BF4 /* SearchTableViewController.swift in Sources */,
 				17DD07BF28CFBA6300283E3F /* Colors.swift in Sources */,
