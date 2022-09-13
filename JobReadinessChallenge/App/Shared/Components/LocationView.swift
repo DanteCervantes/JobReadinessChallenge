@@ -13,7 +13,7 @@ class LocationView: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Enviar a Nombre de Usuario - Dirección >"
-        label.font = .proximaNova
+        label.font = .proximaNova14
         return label
     }()
     

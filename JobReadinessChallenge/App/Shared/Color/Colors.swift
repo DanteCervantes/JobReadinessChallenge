@@ -11,4 +11,9 @@ extension UIColor {
     class var mlYellow:UIColor {
         return UIColor(named: "ML Yellow")!
     }
+    
+    class var appBackground:UIColor {
+        return UIColor(named: "App Background")!
+    }
+
 }
