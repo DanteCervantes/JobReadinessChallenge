@@ -16,4 +16,8 @@ extension UIFont {
     class var proximaNova12:UIFont {
         return UIFont(name: "ProximaNova-RegularIt", size: 12)!
     }
+    
+    class var proximaNova10:UIFont {
+        return UIFont(name: "ProximaNova-RegularIt", size: 10)!
+    }
 }
