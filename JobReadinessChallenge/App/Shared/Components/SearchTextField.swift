@@ -72,7 +72,7 @@ class SearchTextField: UITextField {
         self.leftView = customLeftView
         self.leftViewMode = .always
         self.placeholder = "Buscar en Mercado Libre"
-        self.font = .proximaNova
+        self.font = .proximaNova14
     }
     
     private func setupConstraints(){

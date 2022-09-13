@@ -30,11 +30,13 @@ class MainViewController: UIViewController {
         return view
     }()
     
-    private lazy var locationView: LocationView = {
-        let view = LocationView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
+    private lazy var mainView: MainView = {
+       let mainView = MainView()
+        mainView.translatesAutoresizingMaskIntoConstraints = false
+        return mainView
     }()
+    
+   
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,18 +46,18 @@ class MainViewController: UIViewController {
     
     private func setupView(){
         self.view.addSubview(statusBar)
-        self.view.addSubview(locationView)
-        self.view.backgroundColor = .white
+        self.view.addSubview(mainView)
         self.navigationItem.titleView = searchTextfiled
         self.navigationItem.rightBarButtonItem = cartIcon
+        self.view.backgroundColor = .appBackground
     }
     
     private func setupConstraints() {
         NSLayoutConstraint.activate([
             statusBar.widthAnchor.constraint(equalTo: view.widthAnchor),
             statusBar.heightAnchor.constraint(equalToConstant: 20),
-            locationView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
-            locationView.widthAnchor.constraint(equalTo: self.view.widthAnchor),
+            mainView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 0),
+            mainView.widthAnchor.constraint(equalTo: self.view.widthAnchor)
         ])
     }
     
