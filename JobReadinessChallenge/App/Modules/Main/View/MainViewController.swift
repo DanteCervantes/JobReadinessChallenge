@@ -40,6 +40,7 @@ class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        searchTextfiled.delegate = self
         setupView()
         setupConstraints()
     }
@@ -65,4 +66,24 @@ class MainViewController: UIViewController {
         .lightContent
     }
     
+}
+
+extension MainViewController: UITextFieldDelegate{
+
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        guard let searchText = searchTextfiled.text, !searchText.isEmpty else {
+            let alert = UIAlertController(title: "Advertencia", message: "Por favor ingrese algún valor en el campo de busqueda.", preferredStyle: .alert)
+            let action = UIAlertAction(title: "Ok", style: .default)
+            alert.addAction(action)
+            self.present(alert, animated: true)
+            return false
+        }
+        
+        let searchVC = SearchTableViewController()
+        searchVC.searchText = searchText
+        self.navigationController?.pushViewController(searchVC, animated: true)
+        
+        return true
+    }
 }
