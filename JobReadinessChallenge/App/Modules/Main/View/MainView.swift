@@ -67,8 +67,15 @@ class MainView: UIView {
         return collection
     }()
     
+    private lazy var staticBannerImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.image = UIImage(named: "static-banner")
+        return imageView
+    }()
+    
     private let categoriesService = CategoriesService()
-        
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
@@ -84,6 +91,7 @@ class MainView: UIView {
         self.addSubview(bannerView)
         self.addSubview(shippingView)
         self.addSubview(categoriesCollection)
+        self.addSubview(staticBannerImageView)
         setupCollectionView()
     }
     
@@ -118,11 +126,15 @@ class MainView: UIView {
             categoriesCollection.topAnchor.constraint(equalTo: shippingView.bottomAnchor, constant: 15),
             categoriesCollection.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 17),
             categoriesCollection.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -17),
-            categoriesCollection.heightAnchor.constraint(equalToConstant: 70)
+            categoriesCollection.heightAnchor.constraint(equalToConstant: 70),
             
+            staticBannerImageView.topAnchor.constraint(equalTo: categoriesCollection.bottomAnchor, constant: 16),
+            staticBannerImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
+            staticBannerImageView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
+            staticBannerImageView.heightAnchor.constraint(equalToConstant: 96)
         ])
     }
-    #warning("set equal spacing")
+#warning("set equal spacing")
     private func setupCollectionView(){
         categoriesCollection.delegate = self
         categoriesCollection.dataSource = self
