@@ -9,11 +9,11 @@ import UIKit
 
 class ProductTableViewCell: UITableViewCell {
     
-    var product: Product? {
+    var product: ProductDetail? {
         didSet{
-            productNameLabel.text = product?.name
-            productPriceLabel.text = "$\(product!.price)"
-            productDescriptionLabel.text = product?.description
+            productNameLabel.text = product?.body.title
+            productPriceLabel.text = "$\(product?.body.price ?? 0)"
+            productDescriptionLabel.text = ""
         }
     }
     
