@@ -9,6 +9,8 @@ import UIKit
 
 class ProductTableViewCell: UITableViewCell {
     
+    static let cellId = "cell"
+    
     var product: ProductDetail? {
         didSet{
             productNameLabel.text = product?.body.title
@@ -37,6 +39,7 @@ class ProductTableViewCell: UITableViewCell {
     private lazy var productNameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.numberOfLines = 0
         label.font = UIFont.proximaNova13
         return label
     }()
