@@ -29,7 +29,7 @@ class ProductService {
                         completition(dataObject[0].category_id)
                     }
                 } catch {
-                    fatalError("Unable to decode model")
+                    fatalError(String(data: data!, encoding: .utf8)!)
                 }
             case .failure(let error):
                 print(error)
@@ -48,7 +48,7 @@ class ProductService {
                         completition(dataObject)
                     }
                 } catch {
-                    fatalError("Unable to decode model")
+                    fatalError(String(data: data!, encoding: .utf8)!)
                 }
             case .failure(let error):
                 print(error)
@@ -67,7 +67,7 @@ class ProductService {
                         completition(jsonData)
                     }
                 } catch {
-                    fatalError("Unable to decode model")
+                    fatalError(String(data: data!, encoding: .utf8)!)
                 }
             case .failure(let error):
                 print(error)

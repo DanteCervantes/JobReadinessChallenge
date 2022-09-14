@@ -9,41 +9,24 @@ import UIKit
 
 class SearchTableViewController: UITableViewController {
     
-    var searchText: String?
-    let cellId = "cell"
     private var viewModel: SearchViewModel!
+    var searchText: String?
+    
+    private var products = [ProductDetail]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.register(ProductTableViewCell.self, forCellReuseIdentifier: cellId)
         self.viewModel = SearchViewModel(service: ProductService())
+        tableView.register(ProductTableViewCell.self, forCellReuseIdentifier: ProductTableViewCell.cellId)
+        DispatchQueue.main.async {
+            self.test()
+        }
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        getCategoryId()
-    }
-    
-    // MARK: - Table view data source
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        viewModel.getProductsCount()
-    }
-    
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! ProductTableViewCell
-        let currentItem = viewModel.products[indexPath.row]
-        cell.product = currentItem
-        return cell
-    }
-    
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 145
-    }
     //MARK: - Functions
-    
-    private func getCategoryId(){
-        viewModel.getCategoryId(product: searchText!) {
-            print(viewModel.products)
+    func test(){
+        viewModel.getProductsDetail(product: searchText!) { products in
+            self.products = products
             self.tableView.reloadData()
         }
     }
@@ -54,6 +37,23 @@ class SearchTableViewController: UITableViewController {
         alert.addAction(action)
         self.present(alert, animated: true)
     }
+    
+    // MARK: - Table view data source
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        products.count
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: ProductTableViewCell.cellId, for: indexPath) as! ProductTableViewCell
+        let currentItem = products[indexPath.row]
+        cell.product = currentItem
+        return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 145
+    }
+ 
     
     
     /*

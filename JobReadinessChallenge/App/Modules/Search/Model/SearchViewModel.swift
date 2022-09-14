@@ -10,18 +10,29 @@ import Foundation
 class SearchViewModel {
     
     private let productService: ProductService
-    var products = [ProductDetail]()
     
     init(service: ProductService){
         self.productService = service
     }
     
-    func getCategoryId(product: String, completition: () -> Void){
-        productService.getCategory(product: product) { categoryId in
+    func getProductsDetail(product: String, completition: @escaping ([ProductDetail]) -> Void){
+        getCategoryId(product: product) { categoryId in
             self.getTopProducts(categoryId: categoryId) { topProducts in
-                let ids = self.getIds(topProducts: topProducts)
-                self.getProductsDetail(for: ids)
+                self.getProductsDetail(for: self.getIds(topProducts: topProducts)) { products in
+                    completition(products)
+                }
             }
+        }
+    }
+    
+    private func getCategoryId(product: String, completition: @escaping (String) -> Void){
+        productService.getCategory(product: product) { categoryId in
+            guard categoryId != "Not Found" else {
+                //TODO: manejar error en UI
+                print("Producto no encontrado")
+                return
+            }
+            completition(categoryId)
         }
     }
     
@@ -31,21 +42,20 @@ class SearchViewModel {
         }
     }
     
+    private func getProductsDetail(for ids: String, completition: @escaping ([ProductDetail]) -> Void){
+        productService.getProductsDetail(ids: ids) { products in
+            completition(products)
+        }
+    }
+}
+
+extension SearchViewModel {
+    
     private func getIds(topProducts: TopProducts) -> String{
         var ids = ""
         for product in topProducts.content {
             ids += "\(product.id),"
         }
         return String(ids.trimmingCharacters(in: .whitespaces).dropLast())
-    }
-    
-    private func getProductsDetail(for ids: String){
-        productService.getProductsDetail(ids: ids) { products in
-            self.products = products
-        }
-    }
-    
-    func getProductsCount() -> Int {
-        products.count ?? 0
     }
 }
