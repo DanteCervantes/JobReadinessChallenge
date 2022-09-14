@@ -23,13 +23,6 @@ class MainViewController: UIViewController {
         return button
     }()
     
-    private lazy var statusBar: UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .mlYellow
-        return view
-    }()
-    
     private lazy var mainView: MainView = {
        let mainView = MainView()
         mainView.translatesAutoresizingMaskIntoConstraints = false
@@ -44,7 +37,6 @@ class MainViewController: UIViewController {
     }
     
     private func setupView(){
-        self.view.addSubview(statusBar)
         self.view.addSubview(mainView)
         self.navigationItem.titleView = searchTextfiled
         self.navigationItem.rightBarButtonItem = cartIcon
@@ -53,17 +45,10 @@ class MainViewController: UIViewController {
     
     private func setupConstraints() {
         NSLayoutConstraint.activate([
-            statusBar.widthAnchor.constraint(equalTo: view.widthAnchor),
-            statusBar.heightAnchor.constraint(equalToConstant: 20),
             mainView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 0),
             mainView.widthAnchor.constraint(equalTo: self.view.widthAnchor)
         ])
     }
-    
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        .lightContent
-    }
-    
 }
 
 extension MainViewController: UITextFieldDelegate{
