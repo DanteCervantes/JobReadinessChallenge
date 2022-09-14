@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		170A2F0228D25281009CD0F2 /* ProductDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 170A2F0128D25281009CD0F2 /* ProductDetail.swift */; };
+		170A2F0428D29ED7009CD0F2 /* ImageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 170A2F0328D29ED7009CD0F2 /* ImageHelper.swift */; };
 		1722726028D0104800177BF4 /* LocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1722725F28D0104800177BF4 /* LocationView.swift */; };
 		1722726328D028AB00177BF4 /* ProximaNova-RegularIt.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1722726228D028AB00177BF4 /* ProximaNova-RegularIt.ttf */; };
 		1722726628D02B7D00177BF4 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1722726528D02B7D00177BF4 /* Fonts.swift */; };
@@ -37,6 +38,7 @@
 
 /* Begin PBXFileReference section */
 		170A2F0128D25281009CD0F2 /* ProductDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetail.swift; sourceTree = "<group>"; };
+		170A2F0328D29ED7009CD0F2 /* ImageHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageHelper.swift; sourceTree = "<group>"; };
 		1722725F28D0104800177BF4 /* LocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationView.swift; sourceTree = "<group>"; };
 		1722726228D028AB00177BF4 /* ProximaNova-RegularIt.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ProximaNova-RegularIt.ttf"; sourceTree = "<group>"; };
 		1722726528D02B7D00177BF4 /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
@@ -146,6 +148,7 @@
 			isa = PBXGroup;
 			children = (
 				1722728628D116DB00177BF4 /* AlamoAPIClient.swift */,
+				170A2F0328D29ED7009CD0F2 /* ImageHelper.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -429,6 +432,7 @@
 				17DD079A28CF955700283E3F /* AppDelegate.swift in Sources */,
 				17DD07B428CF972600283E3F /* TabBarViewController.swift in Sources */,
 				17DD079C28CF955700283E3F /* SceneDelegate.swift in Sources */,
+				170A2F0428D29ED7009CD0F2 /* ImageHelper.swift in Sources */,
 				1722728928D1189F00177BF4 /* MlCategory.swift in Sources */,
 				1722726628D02B7D00177BF4 /* Fonts.swift in Sources */,
 				1722727528D0FD4F00177BF4 /* CategoriesService.swift in Sources */,
