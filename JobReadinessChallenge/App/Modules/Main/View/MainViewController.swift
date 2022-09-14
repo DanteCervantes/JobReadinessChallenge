@@ -9,14 +9,7 @@ import UIKit
 
 class MainViewController: UIViewController {
     
-    private lazy var searchTextfiled: SearchTextField = {
-        let textField = SearchTextField()
-        textField.icon = UIImage(systemName: "magnifyingglass")
-        textField.iconColor = .gray
-        return textField
-    }()
-    
-    private lazy var cartIcon: UIBarButtonItem = {
+    private lazy var cartButton: UIBarButtonItem = {
         let button = UIBarButtonItem()
         button.image = UIImage(named: "Cart Icon")
         button.tintColor = .black
@@ -29,17 +22,18 @@ class MainViewController: UIViewController {
         return mainView
     }()
     
+    let searchBar = UISearchBar()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        searchTextfiled.delegate = self
+        searchBar.delegate = self
         setupView()
         setupConstraints()
+        setupSearchBar()
     }
     
     private func setupView(){
         self.view.addSubview(mainView)
-        self.navigationItem.titleView = searchTextfiled
-        self.navigationItem.rightBarButtonItem = cartIcon
         self.view.backgroundColor = .appBackground
     }
     
@@ -51,22 +45,32 @@ class MainViewController: UIViewController {
     }
 }
 
-extension MainViewController: UITextFieldDelegate{
-
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+extension MainViewController: UISearchBarDelegate {
+    
+    private func setupSearchBar(){
+        navigationItem.titleView = searchBar
+        searchBar.placeholder = "Buscar en Mercado Libre"
+        searchBar.searchTextField.font = .proximaNova14
+        searchBar.searchTextField.backgroundColor = .white
+        navigationItem.rightBarButtonItem = cartButton
+        searchBar.sizeToFit()
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         
-        guard let searchText = searchTextfiled.text, !searchText.isEmpty else {
+        let searchText = searchBar.text?.trimmingCharacters(in: .whitespaces)
+        
+        guard searchText?.count ?? 0 > 0 else {
             let alert = UIAlertController(title: "Advertencia", message: "Por favor ingrese algún valor en el campo de busqueda.", preferredStyle: .alert)
             let action = UIAlertAction(title: "Ok", style: .default)
             alert.addAction(action)
             self.present(alert, animated: true)
-            return false
+            return
         }
         
         let searchVC = SearchTableViewController()
         searchVC.searchText = searchText
-        self.navigationController?.pushViewController(searchVC, animated: true)
-        
-        return true
+        navigationController?.pushViewController(searchVC, animated: true
+        )
     }
 }
