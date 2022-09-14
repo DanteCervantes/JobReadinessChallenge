@@ -67,6 +67,7 @@ class ProductService {
                         completition(jsonData)
                     }
                 } catch {
+
                     fatalError(String(data: data!, encoding: .utf8)!)
                 }
             case .failure(let error):

@@ -16,13 +16,13 @@ class ProductTableViewCell: UITableViewCell {
             productNameLabel.text = product?.body.title
             productPriceLabel.text = "$\(product?.body.price ?? 0)"
             productDescriptionLabel.text = ""
+            productImageView.loadFrom(URLAddress: (product?.body.secure_thumbnail)!)
         }
     }
     
-    private lazy var productImageView: UIView = {
-        let imageView = UIView()
+    private lazy var productImageView: UIImageView = {
+        let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.backgroundColor = .lightGray
         imageView.layer.cornerRadius = 4
         return imageView
     }()
