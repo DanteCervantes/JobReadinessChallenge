@@ -9,25 +9,45 @@ import UIKit
 
 class SearchTableViewController: UITableViewController {
     
-    private var viewModel: SearchViewModel!
-    var searchText: String?
+    private lazy var cartButton: UIBarButtonItem = {
+        let button = UIBarButtonItem()
+        button.image = UIImage(named: "Cart Icon")
+        button.tintColor = .black
+        return button
+    }()
     
+    private lazy var backButton: UIBarButtonItem = {
+        let button = UIBarButtonItem()
+        button.image = UIImage(named: "back-button")
+        button.tintColor = .black
+        button.target = self
+        button.action = #selector(backButtonPressed)
+        return button
+    }()
+    
+    private var viewModel: SearchViewModel!
     private var products = [ProductDetail]()
+    
+    private let searchBar = UISearchBar()
+    var searchText: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        searchBar.delegate = self
+        setupSearchBar()
+        searchBar.text = searchText
         self.viewModel = SearchViewModel(service: ProductService())
         tableView.register(ProductTableViewCell.self, forCellReuseIdentifier: ProductTableViewCell.cellId)
-        DispatchQueue.main.async {
-            self.test()
-        }
+        getProducts()
     }
     
     //MARK: - Functions
-    func test(){
-        viewModel.getProductsDetail(product: searchText!) { products in
-            self.products = products
-            self.tableView.reloadData()
+    private func getProducts(){
+        DispatchQueue.main.async {
+            self.viewModel.getProductsDetail(product: self.searchText!) { products in
+                self.products = products
+                self.tableView.reloadData()
+            }
         }
     }
     
@@ -36,6 +56,10 @@ class SearchTableViewController: UITableViewController {
         let action = UIAlertAction(title: "Ok", style: .default)
         alert.addAction(action)
         self.present(alert, animated: true)
+    }
+    
+    @objc private func backButtonPressed(){
+        navigationController?.popToRootViewController(animated: true)
     }
     
     // MARK: - Table view data source
@@ -53,52 +77,33 @@ class SearchTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 145
     }
- 
+}
+
+extension SearchTableViewController: UISearchBarDelegate {
     
+    private func setupSearchBar(){
+        navigationItem.titleView = searchBar
+        navigationItem.rightBarButtonItem = cartButton
+        navigationItem.leftBarButtonItem = backButton
+        searchBar.placeholder = "Buscar en Mercado Libre"
+        searchBar.searchTextField.font = .proximaNova14
+        searchBar.searchTextField.backgroundColor = .white
+        searchBar.sizeToFit()
+    }
     
-    /*
-     // Override to support conditional editing of the table view.
-     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-     // Return false if you do not want the specified item to be editable.
-     return true
-     }
-     */
-    
-    /*
-     // Override to support editing the table view.
-     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-     if editingStyle == .delete {
-     // Delete the row from the data source
-     tableView.deleteRows(at: [indexPath], with: .fade)
-     } else if editingStyle == .insert {
-     // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-     }
-     }
-     */
-    
-    /*
-     // Override to support rearranging the table view.
-     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-     
-     }
-     */
-    
-    /*
-     // Override to support conditional rearranging of the table view.
-     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-     // Return false if you do not want the item to be re-orderable.
-     return true
-     }
-     */
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
-    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        
+        searchText = searchBar.text?.trimmingCharacters(in: .whitespaces)
+        guard searchText?.count ?? 0 > 0 else {
+            let alert = UIAlertController(title: "Advertencia", message: "Por favor ingrese algún valor en el campo de busqueda.", preferredStyle: .alert)
+            let action = UIAlertAction(title: "Ok", style: .default)
+            alert.addAction(action)
+            self.present(alert, animated: true)
+            return
+        }
+        
+        products = []
+        tableView.reloadData()
+        getProducts()
+    }
 }
