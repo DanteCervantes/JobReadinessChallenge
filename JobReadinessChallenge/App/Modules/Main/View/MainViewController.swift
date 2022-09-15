@@ -17,7 +17,7 @@ class MainViewController: UIViewController {
     }()
     
     private lazy var mainView: MainView = {
-       let mainView = MainView()
+        let mainView = MainView()
         mainView.translatesAutoresizingMaskIntoConstraints = false
         return mainView
     }()
@@ -70,7 +70,7 @@ extension MainViewController: UISearchBarDelegate {
         
         let searchVC = SearchTableViewController()
         searchVC.searchText = searchText
-        navigationController?.pushViewController(searchVC, animated: true
-        )
+        navigationController?.pushViewController(searchVC, animated: true)
+        searchBar.text = ""
     }
 }
