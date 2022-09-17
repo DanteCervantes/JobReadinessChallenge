@@ -53,7 +53,7 @@ class MainView: UIView {
     private lazy var shippingLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        var myMutableString = NSMutableAttributedString(string: "Envio gratis en millones de productos desde $299", attributes: [NSAttributedString.Key.font : UIFont.proximaNova12])
+        var myMutableString = NSMutableAttributedString(string: "Envio gratis en millones de productos desde $299", attributes: [NSAttributedString.Key.font : UIFont.proximaNova12!])
         myMutableString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor(red: 0.00, green: 0.65, blue: 0.31, alpha: 1.00), range: NSRange(location:0,length:12))
         label.attributedText = myMutableString
         return label

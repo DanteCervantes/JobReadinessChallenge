@@ -77,6 +77,11 @@ class SearchTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 145
     }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let detailVc = DetailViewController()
+        navigationController?.pushViewController(detailVc, animated: true)
+    }
 }
 
 extension SearchTableViewController: UISearchBarDelegate {

@@ -10,7 +10,7 @@ import Alamofire
 
 class AlamofireAPIClient {
     
-    let headers: HTTPHeaders = [.authorization(bearerToken: "APP_USR-1462408046297250-091418-51e4ab63cce8ebc297ba1dcb5d0de326-433416088")]
+    let headers: HTTPHeaders = [.authorization(bearerToken: "APP_USR-1462408046297250-091622-84279623e9195330dac4d0e9dd8b85b6-433416088")]
     
     func get(url: String, completion: @escaping
     (Result<Data?, AFError>) -> Void) {

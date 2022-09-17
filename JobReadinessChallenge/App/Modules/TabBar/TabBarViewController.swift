@@ -9,13 +9,6 @@ import UIKit
 
 class TabBarViewController: UITabBarController {
     
-    private lazy var searchTextField: SearchTextField = {
-        let textField = SearchTextField()
-        textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.text = "test"
-        return textField
-    }()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTabBar()
