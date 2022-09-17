@@ -9,26 +9,12 @@ import Foundation
 import UIKit
 
 extension UIFont {
-    class var proximaNova20:UIFont {
-        return UIFont(name: "ProximaNova-RegularIt", size: 20)!
-    }
-    class var proximaNova14:UIFont {
-        return UIFont(name: "ProximaNova-RegularIt", size: 14)!
-    }
-    
-    class var proximaNova13:UIFont {
-        return UIFont(name: "ProximaNova-RegularIt", size: 13)!
-    }
-    
-    class var proximaNova12:UIFont {
-        return UIFont(name: "ProximaNova-RegularIt", size: 12)!
-    }
-    
-    class var proximaNova11:UIFont {
-        return UIFont(name: "ProximaNova-RegularIt", size: 11)!
-    }
-    
-    class var proximaNova10:UIFont {
-        return UIFont(name: "ProximaNova-RegularIt", size: 10)!
-    }
+    static let proximaNova36 = UIFont(name: "ProximaNova-RegularIt", size: 36)
+    static let proximaNova20 = UIFont(name: "ProximaNova-RegularIt", size: 20)
+    static let proximaNova16 = UIFont(name: "ProximaNova-RegularIt", size: 16)
+    static let proximaNova14 = UIFont(name: "ProximaNova-RegularIt", size: 14)
+    static let proximaNova13 = UIFont(name: "ProximaNova-RegularIt", size: 13)
+    static let proximaNova12 = UIFont(name: "ProximaNova-RegularIt", size: 12)
+    static let proximaNova11 = UIFont(name: "ProximaNova-RegularIt", size: 11)
+    static let proximaNova10 = UIFont(name: "ProximaNova-RegularIt", size: 10)
 }
