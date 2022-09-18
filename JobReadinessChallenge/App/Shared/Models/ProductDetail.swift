@@ -8,7 +8,7 @@
 import Foundation
 
 struct ProductDetail: Codable {
-    let body: Body
+    var body: Body
 }
 
 struct Body: Codable {
@@ -16,5 +16,6 @@ struct Body: Codable {
     let title: String
     let price: Double
     let secure_thumbnail: String
+    var description: String?
 }
 

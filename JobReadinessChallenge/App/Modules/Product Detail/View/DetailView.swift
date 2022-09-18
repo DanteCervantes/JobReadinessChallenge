@@ -9,6 +9,15 @@ import UIKit
 
 class DetailView: UIView {
     
+    var product: ProductDetail? {
+        didSet {
+            smallTitleLabel.text = product!.body.title
+            mainTitleLabel.text = product!.body.title
+            productImageView.loadFrom(URLAddress: (product!.body.secure_thumbnail))
+            priceLabel.text = "$\(product!.body.price) MXN"
+        }
+    }
+    
     private lazy var locationView: LocationView = {
         let view = LocationView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -30,7 +39,6 @@ class DetailView: UIView {
     private lazy var smallTitleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Product Name"
         label.font = .proximaNova12
         label.textColor = .lightGray
         return label
@@ -39,7 +47,6 @@ class DetailView: UIView {
     private lazy var mainTitleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Product Name"
         label.font = .proximaNova16
         return label
     }()
@@ -55,14 +62,13 @@ class DetailView: UIView {
     private lazy var productImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.image = UIImage(named: "Cart Icon")
+        imageView.contentMode = .scaleAspectFit
         return imageView
     }()
     
     private lazy var priceLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "$21,000 MXN"
         label.font = .proximaNova36
         return label
     }()

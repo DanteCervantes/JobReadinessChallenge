@@ -74,5 +74,25 @@ class ProductService {
                 print(error)
             }
         }
+        
+    }
+    
+    func getProductDescription(product: String, completition: @escaping (String) -> Void){
+        let apiURL = "https://api.mercadolibre.com/items/MLM1328587014/description"
+        apiClient.get(url: apiURL) { response in
+            switch response {
+            case .success(let data):
+                do{
+                    if let data = data {
+                        let jsonData = try JSONDecoder().decode(ProductDescription.self, from: data)
+                        completition(jsonData.plain_text)
+                    }
+                } catch {
+                    fatalError(String(data: data!, encoding: .utf8)!)
+                }
+            case .failure(let error):
+                print(error)
+            }
+        }
     }
 }
