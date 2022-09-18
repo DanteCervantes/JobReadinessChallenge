@@ -80,6 +80,7 @@ class SearchTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let detailVc = DetailViewController()
+        detailVc.product = products[indexPath.item]
         navigationController?.pushViewController(detailVc, animated: true)
     }
 }

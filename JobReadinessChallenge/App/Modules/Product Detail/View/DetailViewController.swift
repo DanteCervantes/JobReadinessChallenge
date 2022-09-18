@@ -9,6 +9,12 @@ import UIKit
 
 class DetailViewController: UIViewController {
     
+    var product: ProductDetail? {
+        didSet {
+            detailView.product = product!
+        }
+    }
+    
     private lazy var backButton: UIBarButtonItem = {
         let button = UIBarButtonItem()
         button.image = UIImage(named: "back-button")

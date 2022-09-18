@@ -15,7 +15,7 @@ class ProductTableViewCell: UITableViewCell {
         didSet{
             productNameLabel.text = product?.body.title
             productPriceLabel.text = "$\(product?.body.price ?? 0)"
-            productDescriptionLabel.text = ""
+            productDescriptionLabel.text = product?.body.description
             productImageView.loadFrom(URLAddress: (product?.body.secure_thumbnail)!)
         }
     }
