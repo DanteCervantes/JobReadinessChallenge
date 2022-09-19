@@ -13,7 +13,6 @@ class DetailView: UIView {
         didSet {
             smallTitleLabel.text = product!.body.title
             mainTitleLabel.text = product!.body.title
-            productImageView.loadFrom(URLAddress: (product!.body.secure_thumbnail))
             priceLabel.text = "$\(product!.body.price) MXN"
         }
     }
@@ -59,11 +58,12 @@ class DetailView: UIView {
         return label
     }()
     
-    private lazy var productImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.contentMode = .scaleAspectFit
-        return imageView
+    private lazy var carousel: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collection.translatesAutoresizingMaskIntoConstraints = false
+        return collection
     }()
     
     private lazy var priceLabel: UILabel = {
@@ -138,7 +138,7 @@ class DetailView: UIView {
     }()
     
     private lazy var descriptionLabel: UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Descripción"
         label.font = UIFont.proximaNova16
@@ -146,7 +146,7 @@ class DetailView: UIView {
     }()
     
     private lazy var descriptionContent: UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Descripción Content"
         label.font = UIFont.proximaNova12
@@ -158,6 +158,9 @@ class DetailView: UIView {
         super.init(frame: frame)
         setupView()
         setupConstraints()
+        carousel.delegate = self
+        carousel.dataSource = self
+        carousel.register(CarouselCollectionViewCell.self, forCellWithReuseIdentifier: CarouselCollectionViewCell.identifier)
     }
     
     required init?(coder: NSCoder) {
@@ -173,7 +176,7 @@ class DetailView: UIView {
         contentView.addSubview(smallTitleLabel)
         contentView.addSubview(mainTitleLabel)
         contentView.addSubview(sellerLabel)
-        contentView.addSubview(productImageView)
+        contentView.addSubview(carousel)
         contentView.addSubview(priceLabel)
         contentView.addSubview(firstStackView)
         contentView.addSubview(secondStackView)
@@ -210,12 +213,12 @@ class DetailView: UIView {
             sellerLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             sellerLabel.heightAnchor.constraint(equalToConstant: 18),
             
-            productImageView.topAnchor.constraint(equalTo: sellerLabel.bottomAnchor, constant: 24),
-            productImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            productImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            productImageView.heightAnchor.constraint(equalToConstant: 275),
+            carousel.topAnchor.constraint(equalTo: sellerLabel.bottomAnchor, constant: 24),
+            carousel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            carousel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            carousel.heightAnchor.constraint(equalToConstant: 275),
             
-            priceLabel.topAnchor.constraint(equalTo: productImageView.bottomAnchor, constant: 24),
+            priceLabel.topAnchor.constraint(equalTo: carousel.bottomAnchor, constant: 24),
             priceLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             priceLabel.heightAnchor.constraint(equalToConstant: 45),
             
@@ -248,3 +251,37 @@ class DetailView: UIView {
         ])
     }
 }
+
+extension DetailView: UICollectionViewDelegate, UICollectionViewDataSource {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        (product?.body.pictures.count)!
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CarouselCollectionViewCell.identifier, for: indexPath) as! CarouselCollectionViewCell
+        cell.setupCell(imageUrl: (product?.body.pictures[indexPath.row].secure_url)!)
+        return cell
+    }
+}
+
+extension DetailView: UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let size = UIScreen.main.bounds
+        return CGSize(width: size.width, height: size.height)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        0
+    }
+}
+
