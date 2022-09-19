@@ -37,6 +37,7 @@ class SearchTableViewController: UITableViewController {
         setupSearchBar()
         searchBar.text = searchText
         self.viewModel = SearchViewModel(service: SearchService())
+        self.viewModel.delegate = self
         tableView.register(ProductTableViewCell.self, forCellReuseIdentifier: ProductTableViewCell.cellId)
         getProducts()
     }
@@ -49,13 +50,6 @@ class SearchTableViewController: UITableViewController {
                 self.tableView.reloadData()
             }
         }
-    }
-    
-    private func showAlert(title: String = "Warninng", message: String){
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let action = UIAlertAction(title: "Ok", style: .default)
-        alert.addAction(action)
-        self.present(alert, animated: true)
     }
     
     @objc private func backButtonPressed(){
@@ -117,5 +111,14 @@ extension SearchTableViewController: UISearchBarDelegate {
         products = []
         tableView.reloadData()
         getProducts()
+    }
+}
+extension SearchTableViewController: SearchServiceDelegate {
+    func didFailWithError(error: String) {
+        let alert = UIAlertController(title: "Error", message: error, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
+            self.navigationController?.popToRootViewController(animated: true)
+        }))
+        self.present(alert, animated: true)
     }
 }
