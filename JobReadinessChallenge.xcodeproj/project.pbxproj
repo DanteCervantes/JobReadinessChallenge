@@ -18,7 +18,7 @@
 		1722727528D0FD4F00177BF4 /* CategoriesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1722727428D0FD4F00177BF4 /* CategoriesService.swift */; };
 		1722727C28D1063300177BF4 /* SearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1722727B28D1063300177BF4 /* SearchTableViewController.swift */; };
 		1722727E28D113D600177BF4 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1722727D28D113D600177BF4 /* Product.swift */; };
-		1722728428D114E600177BF4 /* ProductService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1722728328D114E600177BF4 /* ProductService.swift */; };
+		1722728428D114E600177BF4 /* SearchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1722728328D114E600177BF4 /* SearchService.swift */; };
 		1722728728D116DB00177BF4 /* AlamoAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1722728628D116DB00177BF4 /* AlamoAPIClient.swift */; };
 		1722728928D1189F00177BF4 /* MlCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1722728828D1189F00177BF4 /* MlCategory.swift */; };
 		1722728D28D134D000177BF4 /* ProductTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1722728C28D134D000177BF4 /* ProductTableViewCell.swift */; };
@@ -53,7 +53,7 @@
 		1722727428D0FD4F00177BF4 /* CategoriesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesService.swift; sourceTree = "<group>"; };
 		1722727B28D1063300177BF4 /* SearchTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewController.swift; sourceTree = "<group>"; };
 		1722727D28D113D600177BF4 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
-		1722728328D114E600177BF4 /* ProductService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductService.swift; sourceTree = "<group>"; };
+		1722728328D114E600177BF4 /* SearchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchService.swift; sourceTree = "<group>"; };
 		1722728628D116DB00177BF4 /* AlamoAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlamoAPIClient.swift; sourceTree = "<group>"; };
 		1722728828D1189F00177BF4 /* MlCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MlCategory.swift; sourceTree = "<group>"; };
 		1722728C28D134D000177BF4 /* ProductTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductTableViewCell.swift; sourceTree = "<group>"; };
@@ -150,7 +150,7 @@
 		1722728228D114D400177BF4 /* Service */ = {
 			isa = PBXGroup;
 			children = (
-				1722728328D114E600177BF4 /* ProductService.swift */,
+				1722728328D114E600177BF4 /* SearchService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -459,7 +459,7 @@
 				1722729028D156E600177BF4 /* SearchViewModel.swift in Sources */,
 				17DD07BF28CFBA6300283E3F /* Colors.swift in Sources */,
 				17CD823E28D38C4900DE5C91 /* DetailView.swift in Sources */,
-				1722728428D114E600177BF4 /* ProductService.swift in Sources */,
+				1722728428D114E600177BF4 /* SearchService.swift in Sources */,
 				1722727228D0C30100177BF4 /* CategoryCollectionViewCell.swift in Sources */,
 				1722726A28D02DDE00177BF4 /* MainView.swift in Sources */,
 				17DD079A28CF955700283E3F /* AppDelegate.swift in Sources */,

@@ -9,12 +9,6 @@ import UIKit
 
 class DetailViewController: UIViewController {
     
-    var product: ProductDetail? {
-        didSet {
-            detailView.product = product!
-        }
-    }
-    
     private lazy var backButton: UIBarButtonItem = {
         let button = UIBarButtonItem()
         button.image = UIImage(named: "back-button")
@@ -50,6 +44,12 @@ class DetailViewController: UIViewController {
         detailView.translatesAutoresizingMaskIntoConstraints = false
         return detailView
     }()
+    
+    var product: ProductDetail? {
+        didSet {
+            detailView.product = product!
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

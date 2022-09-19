@@ -15,7 +15,7 @@ class ProductTableViewCell: UITableViewCell {
         didSet{
             productNameLabel.text = product?.body.title
             productPriceLabel.text = "$\(product?.body.price ?? 0)"
-            productDescriptionLabel.text = product?.body.description
+            //productDescriptionLabel.text = product?.body.description
             productImageView.loadFrom(URLAddress: (product?.body.secure_thumbnail)!)
         }
     }
@@ -28,7 +28,7 @@ class ProductTableViewCell: UITableViewCell {
     }()
     
     private lazy var stackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [productNameLabel,productPriceLabel,productDescriptionLabel])
+        let stackView = UIStackView(arrangedSubviews: [productNameLabel,productPriceLabel/*,productDescriptionLabel*/])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
         stackView.distribution = .equalSpacing
@@ -51,13 +51,13 @@ class ProductTableViewCell: UITableViewCell {
         return label
     }()
     
-    private lazy var productDescriptionLabel: UILabel = {
+    /*private lazy var productDescriptionLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.proximaNova11
         label.textColor = .lightGray
         return label
-    }()
+    }()*/
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)

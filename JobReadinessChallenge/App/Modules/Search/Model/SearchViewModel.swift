@@ -9,10 +9,10 @@ import Foundation
 
 class SearchViewModel {
     
-    private let productService: ProductService
+    private let searchService: SearchService
     
-    init(service: ProductService){
-        self.productService = service
+    init(service: SearchService){
+        self.searchService = service
     }
     
     func getProductsDetail(product: String, completition: @escaping ([ProductDetail]) -> Void){
@@ -26,7 +26,7 @@ class SearchViewModel {
     }
     
     private func getCategoryId(product: String, completition: @escaping (String) -> Void){
-        productService.getCategory(product: product) { categoryId in
+        searchService.getCategory(product: product) { categoryId in
             guard categoryId != "Not Found" else {
                 //TODO: manejar error en UI
                 print("Producto no encontrado")
@@ -37,22 +37,22 @@ class SearchViewModel {
     }
     
     private func getTopProducts(categoryId: String, completition: @escaping (TopProducts) -> Void){
-        productService.getTopTwentyByCategory(categoryId: categoryId) { topProducts in
+        searchService.getTopTwentyByCategory(categoryId: categoryId) { topProducts in
             completition(topProducts)
         }
     }
     
     private func getProductsDetail(for ids: String, completition: @escaping ([ProductDetail]) -> Void){
-        productService.getProductsDetail(ids: ids) { products in
+        searchService.getProductsDetail(ids: ids) { products in
             completition(products)
         }
     }
     
-    /*private func getProductDescription(id: String, completition: @escaping(String) -> Void){
-        productService.getProductDescription(product: id) { description in
-            completition(description)
+    func getDescription(id: String, completition: @escaping (String) -> Void){
+        searchService.getProductDescription(product: id) { descripcion in
+            completition(descripcion)
         }
-    }*/
+    }
 }
 
 extension SearchViewModel {
