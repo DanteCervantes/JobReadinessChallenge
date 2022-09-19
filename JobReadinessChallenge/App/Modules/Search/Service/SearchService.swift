@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class ProductService {
+class SearchService {
     
     private let apiClient = AlamofireAPIClient()
     
@@ -64,11 +64,6 @@ class ProductService {
                 do {
                     if let data = data{
                         let jsonData = try JSONDecoder().decode([ProductDetail].self, from: data)
-                        for product in jsonData {
-                            self.getProductDescription(product: product.body.id) { description in
-                                product.body.description = description
-                            }
-                        }
                         completition(jsonData)
                     }
                 } catch {
@@ -79,10 +74,9 @@ class ProductService {
                 print(error)
             }
         }
-        
     }
     
-    private func getProductDescription(product: String, completition: @escaping (String) -> Void){
+    func getProductDescription(product: String, completition: @escaping (String) -> Void){
         let apiURL = "https://api.mercadolibre.com/items/\(product)/description"
         apiClient.get(url: apiURL) { response in
             switch response {

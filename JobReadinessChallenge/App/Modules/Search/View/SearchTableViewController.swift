@@ -36,7 +36,7 @@ class SearchTableViewController: UITableViewController {
         searchBar.delegate = self
         setupSearchBar()
         searchBar.text = searchText
-        self.viewModel = SearchViewModel(service: ProductService())
+        self.viewModel = SearchViewModel(service: SearchService())
         tableView.register(ProductTableViewCell.self, forCellReuseIdentifier: ProductTableViewCell.cellId)
         getProducts()
     }
@@ -79,9 +79,15 @@ class SearchTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let detailVc = DetailViewController()
-        detailVc.product = products[indexPath.item]
-        navigationController?.pushViewController(detailVc, animated: true)
+        DispatchQueue.main.async {
+            let product = self.products[indexPath.item]
+            self.viewModel.getDescription(id: product.body.id) { description in
+                product.body.description = description
+                let vc = DetailViewController()
+                vc.product = product
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
+        }
     }
 }
 

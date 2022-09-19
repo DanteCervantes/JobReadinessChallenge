@@ -14,6 +14,7 @@ class DetailView: UIView {
             smallTitleLabel.text = product!.body.title
             mainTitleLabel.text = product!.body.title
             priceLabel.text = "$\(product!.body.price) MXN"
+            descriptionLabel.text = product?.body.description
         }
     }
     
@@ -39,6 +40,7 @@ class DetailView: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .proximaNova12
+        label.numberOfLines = 0
         label.textColor = .lightGray
         return label
     }()
@@ -46,6 +48,7 @@ class DetailView: UIView {
     private lazy var mainTitleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.numberOfLines = 0
         label.font = .proximaNova16
         return label
     }()
@@ -142,6 +145,7 @@ class DetailView: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Descripción"
         label.font = UIFont.proximaNova16
+        label.numberOfLines = 0
         return label
     }()
     
@@ -189,25 +193,25 @@ class DetailView: UIView {
             locationView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 0),
             locationView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0),
             locationView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0),
-            
+                        
             scrollView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             scrollView.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor),
             scrollView.topAnchor.constraint(equalTo: locationView.bottomAnchor, constant: 0),
             
-            contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
+            contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
             contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
             contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
-            contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
-            contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
             
             smallTitleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
             smallTitleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            smallTitleLabel.heightAnchor.constraint(equalToConstant: 18),
+            smallTitleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             
             mainTitleLabel.topAnchor.constraint(equalTo: smallTitleLabel.bottomAnchor, constant: 6),
             mainTitleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            mainTitleLabel.heightAnchor.constraint(equalToConstant: 18),
+            mainTitleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             
             sellerLabel.topAnchor.constraint(equalTo: mainTitleLabel.bottomAnchor, constant: 4),
             sellerLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
@@ -247,7 +251,8 @@ class DetailView: UIView {
             descriptionContent.topAnchor.constraint(equalTo: secondStackView.bottomAnchor, constant: 43),
             descriptionContent.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             descriptionContent.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            descriptionContent.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -50)
+            //TODO: Fix contraint
+            descriptionContent.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16)
         ])
     }
 }
