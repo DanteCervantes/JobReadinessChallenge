@@ -6,10 +6,16 @@
 //
 
 import Foundation
+import UIKit
+
+protocol SearchServiceDelegate {
+    func didFailWithError(error: String)
+}
 
 class SearchViewModel {
     
     private let searchService: SearchService
+    var delegate: SearchServiceDelegate?
     
     init(service: SearchService){
         self.searchService = service
@@ -28,8 +34,7 @@ class SearchViewModel {
     private func getCategoryId(product: String, completition: @escaping (String) -> Void){
         searchService.getCategory(product: product) { categoryId in
             guard categoryId != "Not Found" else {
-                //TODO: manejar error en UI
-                print("Producto no encontrado")
+                self.delegate?.didFailWithError(error: "Categoria no encontrada, por favor intente con una categoria distinta.")
                 return
             }
             completition(categoryId)
@@ -38,6 +43,11 @@ class SearchViewModel {
     
     private func getTopProducts(categoryId: String, completition: @escaping (TopProducts) -> Void){
         searchService.getTopTwentyByCategory(categoryId: categoryId) { topProducts in
+            let onlyItemProducts = topProducts.content.filter { product in
+                product.type != "PRODUCT"
+            }
+            topProducts.content.removeAll()
+            topProducts.content = onlyItemProducts
             completition(topProducts)
         }
     }

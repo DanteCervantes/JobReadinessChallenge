@@ -7,11 +7,11 @@
 
 import Foundation
 
-struct TopProducts: Codable {
-    let content: [Content]
+class TopProducts: Codable {
+    var content: [Content]
 }
 
-struct Content: Codable {
+class Content: Codable {
     let id: String
     let position: Int
     let type: String
