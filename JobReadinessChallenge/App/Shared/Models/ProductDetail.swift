@@ -17,5 +17,10 @@ struct Body: Codable {
     let price: Double
     let secure_thumbnail: String
     var description: String?
+    let pictures: [Image]
+}
+
+struct Image: Codable {
+    let secure_url: String
 }
 
