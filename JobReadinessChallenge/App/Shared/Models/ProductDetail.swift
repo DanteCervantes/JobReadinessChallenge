@@ -7,11 +7,11 @@
 
 import Foundation
 
-struct ProductDetail: Codable {
+class ProductDetail: Codable {
     var body: Body
 }
 
-struct Body: Codable {
+class Body: Codable {
     let id: String
     let title: String
     let price: Double
@@ -20,7 +20,7 @@ struct Body: Codable {
     let pictures: [Image]
 }
 
-struct Image: Codable {
+class Image: Codable {
     let secure_url: String
 }
 

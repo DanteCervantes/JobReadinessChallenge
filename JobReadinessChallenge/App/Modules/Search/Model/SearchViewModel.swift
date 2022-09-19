@@ -48,11 +48,11 @@ class SearchViewModel {
         }
     }
     
-    func getProductDescription(for id: String, completition: @escaping(String) -> Void){
+    /*private func getProductDescription(id: String, completition: @escaping(String) -> Void){
         productService.getProductDescription(product: id) { description in
             completition(description)
         }
-    }
+    }*/
 }
 
 extension SearchViewModel {

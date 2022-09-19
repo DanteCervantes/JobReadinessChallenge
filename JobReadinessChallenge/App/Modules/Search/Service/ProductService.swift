@@ -25,7 +25,7 @@ class ProductService {
                             completition("Not Found")
                             return
                         }
-            
+                        
                         completition(dataObject[0].category_id)
                     }
                 } catch {
@@ -64,6 +64,11 @@ class ProductService {
                 do {
                     if let data = data{
                         let jsonData = try JSONDecoder().decode([ProductDetail].self, from: data)
+                        for product in jsonData {
+                            self.getProductDescription(product: product.body.id) { description in
+                                product.body.description = description
+                            }
+                        }
                         completition(jsonData)
                     }
                 } catch {
@@ -77,8 +82,8 @@ class ProductService {
         
     }
     
-    func getProductDescription(product: String, completition: @escaping (String) -> Void){
-        let apiURL = "https://api.mercadolibre.com/items/MLM1328587014/description"
+    private func getProductDescription(product: String, completition: @escaping (String) -> Void){
+        let apiURL = "https://api.mercadolibre.com/items/\(product)/description"
         apiClient.get(url: apiURL) { response in
             switch response {
             case .success(let data):
