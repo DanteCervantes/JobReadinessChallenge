@@ -14,8 +14,6 @@ class TabBarViewController: UITabBarController {
         setupTabBar()
     }
     
-    //Setup UI
-    
     private func setupTabBar(){
         
         let mainVC = UINavigationController(rootViewController: MainViewController())
@@ -29,6 +27,4 @@ class TabBarViewController: UITabBarController {
         tabBar.layer.borderColor = UIColor.lightGray.cgColor
         viewControllers = [mainVC, menuVC]
     }
-    
-   
 }

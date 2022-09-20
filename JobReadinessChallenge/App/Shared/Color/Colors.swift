@@ -8,7 +8,6 @@
 import UIKit
 
 extension UIColor {
-    
     static let mlYellow = UIColor(named: "ML Yellow")
     static let mlSecondaryYellow = UIColor(named: "mlSecondaryYellow")
     static let appBackground = UIColor(named: "App Background")

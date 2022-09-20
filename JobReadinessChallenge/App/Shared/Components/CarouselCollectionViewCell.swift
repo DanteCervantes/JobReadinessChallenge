@@ -11,6 +11,7 @@ class CarouselCollectionViewCell: UICollectionViewCell {
     
     static let identifier = "carouselCell"
     
+    //MARK: - View Code
     private lazy var imageContainer: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -24,13 +25,15 @@ class CarouselCollectionViewCell: UICollectionViewCell {
         setupConstraints()
     }
     
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    //MARK: - Setup Cell
     func setupCell(imageUrl: String){
         imageContainer.loadFrom(URLAddress: imageUrl)
     }
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
     //MARK: - SetupView
     
     private func setupView(){

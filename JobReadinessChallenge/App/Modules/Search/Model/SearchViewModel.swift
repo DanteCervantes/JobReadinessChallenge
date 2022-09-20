@@ -75,7 +75,6 @@ class SearchViewModel {
 }
 
 extension SearchViewModel {
-    
     private func getIds(topProducts: TopProducts) -> String{
         var ids = ""
         for product in topProducts.content {

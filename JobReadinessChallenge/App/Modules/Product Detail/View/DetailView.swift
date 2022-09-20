@@ -25,6 +25,7 @@ class DetailView: UIView {
     
     private var viewModel: ProductDetailViewModel!
     
+    //MARK: - View Code
     private lazy var locationView: LocationView = {
         let view = LocationView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -182,7 +183,6 @@ class DetailView: UIView {
     }
     
     //MARK: - Setup View
-    
     private func setupView(){
         self.addSubview(locationView)
         self.addSubview(scrollView)
@@ -267,22 +267,21 @@ class DetailView: UIView {
     }
     
     //MARK: -Functions:
-    
     func toggleFavButton(){
         if viewModel.isFavoriteItem(productId: (product?.body.id)!){
             favoriteButton.configuration?.image = UIImage(systemName: "heart.fill")
-            
         } else {
             favoriteButton.configuration?.image = UIImage(systemName: "heart")
         }
     }
+    
     @objc private func favPressed(){
         delegate?.favPressed()
     }
 }
 
+//MARK: - UICollectionViewDelegate, UICollectionViewDataSource
 extension DetailView: UICollectionViewDelegate, UICollectionViewDataSource {
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         (product?.body.pictures.count)!
     }
@@ -294,8 +293,8 @@ extension DetailView: UICollectionViewDelegate, UICollectionViewDataSource {
     }
 }
 
+//MARK: - UICollectionViewDelegateFlowLayout
 extension DetailView: UICollectionViewDelegateFlowLayout {
-    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let size = UIScreen.main.bounds
         return CGSize(width: size.width, height: size.height)
@@ -313,4 +312,3 @@ extension DetailView: UICollectionViewDelegateFlowLayout {
         0
     }
 }
-

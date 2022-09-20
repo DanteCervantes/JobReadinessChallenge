@@ -9,6 +9,7 @@ import UIKit
 
 class SearchTableViewController: UITableViewController {
     
+    //MARK: - View Code
     private lazy var cartButton: UIBarButtonItem = {
         let button = UIBarButtonItem()
         button.image = UIImage(named: "Cart Icon")
@@ -87,8 +88,8 @@ class SearchTableViewController: UITableViewController {
     }
 }
 
+//MARK: - UISearchBarDelegate
 extension SearchTableViewController: UISearchBarDelegate {
-    
     private func setupSearchBar(){
         navigationItem.titleView = searchBar
         navigationItem.rightBarButtonItem = cartButton
@@ -100,7 +101,6 @@ extension SearchTableViewController: UISearchBarDelegate {
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        
         searchText = searchBar.text?.trimmingCharacters(in: .whitespaces)
         guard searchText?.count ?? 0 > 0 else {
             let alert = UIAlertController(title: "Advertencia", message: "Por favor ingrese algún valor en el campo de busqueda.", preferredStyle: .alert)
@@ -115,6 +115,8 @@ extension SearchTableViewController: UISearchBarDelegate {
         getProducts()
     }
 }
+
+//MARK: - SearchServiceDelegate
 extension SearchTableViewController: SearchServiceDelegate {
     func didFailWithError(error: String) {
         let alert = UIAlertController(title: "Error", message: error, preferredStyle: .alert)

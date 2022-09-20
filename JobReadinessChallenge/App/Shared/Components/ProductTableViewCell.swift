@@ -10,6 +10,7 @@ import UIKit
 class ProductTableViewCell: UITableViewCell {
     
     static let cellId = "cell"
+    
     var showFavButton: Bool? {
         didSet {
             if showFavButton == false {
@@ -26,6 +27,7 @@ class ProductTableViewCell: UITableViewCell {
         }
     }
     
+    //MARK: - View Code
     private lazy var productImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -41,7 +43,6 @@ class ProductTableViewCell: UITableViewCell {
         button.clipsToBounds = true
         button.setImage(UIImage(systemName: "heart"), for: .normal)
         button.backgroundColor = .white
-   
         return button
     }()
     
