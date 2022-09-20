@@ -11,6 +11,7 @@ class MenuTableViewCell: UITableViewCell {
     
     static let identifier = "MenuCell"
     
+    //MARK: - View Code
     private lazy var icon: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -35,6 +36,7 @@ class MenuTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    //MARK: - Setup Cell
     func setupCell(iconName: String, title: String){
         icon.image = UIImage(systemName: iconName)
         titleLabel.text = title
@@ -58,5 +60,4 @@ class MenuTableViewCell: UITableViewCell {
             titleLabel.centerYAnchor.constraint(equalTo: self.contentView.centerYAnchor)
         ])
     }
-    
 }

@@ -9,6 +9,7 @@ import UIKit
 
 class MenuViewController: UIViewController {
     
+    //MARK: - View Code
     private lazy var menuView: MenuView = {
         let view = MenuView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -23,7 +24,6 @@ class MenuViewController: UIViewController {
     }
     
     //MARK: - Setup View
-    
     private func setupView(){
         self.view.addSubview(menuView)
     }
@@ -38,6 +38,7 @@ class MenuViewController: UIViewController {
     }
 }
 
+//MARK: - MenuViewDelegate
 extension MenuViewController: MenuViewDelegate {
     func didPressFavorites() {
         self.navigationController?.pushViewController(FavoriteTableViewController(), animated: true)

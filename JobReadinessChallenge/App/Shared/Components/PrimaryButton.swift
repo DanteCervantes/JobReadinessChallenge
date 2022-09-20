@@ -15,6 +15,7 @@ class PrimaryButton: UIButton {
         }
     }
     
+    //MARK: - View Code
     private lazy var primaryButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -32,10 +33,10 @@ class PrimaryButton: UIButton {
         fatalError("init(coder:) has not been implemented")
     }
     
+    //MARK: - Setup View
     private func setupConstraints(){
         NSLayoutConstraint.activate([
             primaryButton.heightAnchor.constraint(equalToConstant: 48)
         ])
     }
-    
 }

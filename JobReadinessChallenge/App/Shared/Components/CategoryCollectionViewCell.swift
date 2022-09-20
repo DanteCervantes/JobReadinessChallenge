@@ -11,6 +11,7 @@ class CategoryCollectionViewCell: UICollectionViewCell {
     
     static let identifier = "cell"
     
+    //MARK: - View Code
     private lazy var imageContainer: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -45,7 +46,7 @@ class CategoryCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    //MARK: Setup Cell
+    //MARK: - Setup Cell
     func setupCell(imageName: String, title: String){
         categoryImageView.image = UIImage(named: imageName)
         titleLabel.text = title

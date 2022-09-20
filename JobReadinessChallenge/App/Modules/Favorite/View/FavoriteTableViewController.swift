@@ -44,7 +44,6 @@ class FavoriteTableViewController: UITableViewController {
     }
     
     // MARK: - Table view data source
-    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         favoriteItems.count
     }
@@ -89,7 +88,4 @@ extension FavoriteTableViewController: SearchServiceDelegate {
         }))
         self.present(alert, animated: true)
     }
-    
-    
 }
-

@@ -9,6 +9,7 @@ import UIKit
 
 class LocationView: UIView {
     
+    //MARK: - ViewCode
     private lazy var addresLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -34,6 +35,7 @@ class LocationView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    //MARK: - Setup View
     private func setupView(){
         self.backgroundColor = .mlYellow
         self.addSubview(locationImageView)

@@ -7,15 +7,6 @@
 
 import Foundation
 
-//
-//  ProductDetailViewModel.swift
-//  JobReadinessChallenge
-//
-//  Created by Dante Cervantes on 20/09/22.
-//
-
-import Foundation
-
 class FavoritesViewModel {
     
     private let searchService: SearchService

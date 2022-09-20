@@ -9,6 +9,7 @@ import UIKit
 
 class MainView: UIView {
     
+    //MARK: - View Code
     private lazy var locationView: LocationView = {
         let view = LocationView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -86,6 +87,7 @@ class MainView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    //MARK: - Setup View
     private func setupView(){
         self.addSubview(locationView)
         self.addSubview(bannerView)
@@ -143,6 +145,7 @@ class MainView: UIView {
     }
 }
 
+//MARK: - UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout
 extension MainView: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return categoriesService.getCategoriesCount()

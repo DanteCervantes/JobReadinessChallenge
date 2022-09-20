@@ -9,6 +9,13 @@ import UIKit
 
 class DetailViewController: UIViewController {
     
+    var product: ProductDetail? {
+        didSet {
+            detailView.product = product!
+        }
+    }
+    
+    //MARK: - View Code
     private lazy var backButton: UIBarButtonItem = {
         let button = UIBarButtonItem()
         button.image = UIImage(named: "back-button")
@@ -45,12 +52,6 @@ class DetailViewController: UIViewController {
         detailView.translatesAutoresizingMaskIntoConstraints = false
         return detailView
     }()
-    
-    var product: ProductDetail? {
-        didSet {
-            detailView.product = product!
-        }
-    }
     
     private var viewModel: ProductDetailViewModel!
     
@@ -111,6 +112,7 @@ class DetailViewController: UIViewController {
     }
 }
 
+//MARK: - DetailViewDelegate
 extension DetailViewController: DetailViewDelegate {
     func favPressed() {
         favoriteButtonPressed()

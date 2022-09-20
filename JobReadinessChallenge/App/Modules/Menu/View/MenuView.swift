@@ -13,6 +13,7 @@ protocol MenuViewDelegate {
 
 class MenuView: UIView {
     
+    //MARK: - View Code
     private lazy var headerView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -83,7 +84,6 @@ class MenuView: UIView {
     }
     
     //MARK: - Setup View
-    
     private func setupView(){
         self.addSubview(headerView)
         headerView.addSubview(profileImageView)
@@ -124,7 +124,6 @@ class MenuView: UIView {
 }
 
 //MARK: - UITableViewDelegate, UITableViewDataSource
-
 extension MenuView: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

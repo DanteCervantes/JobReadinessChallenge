@@ -23,7 +23,7 @@ class SearchTextField: UITextField {
         }
     }
     
-    //MARK: View Code
+    //MARK: -View Code
     private lazy var iconView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -37,7 +37,7 @@ class SearchTextField: UITextField {
         return view
     }()
     
-    //MARK: Methods to override
+    //MARK: - Methods to override
     override func textRect(forBounds bounds: CGRect) -> CGRect {
         return bounds.inset(by: padding)
     }
@@ -60,7 +60,7 @@ class SearchTextField: UITextField {
         fatalError("init(coder:) has not been implemented")
     }
     
-    //MARK: View Build
+    //MARK: - View Build
     private func setupView(){
         self.backgroundColor = .white
         self.layer.cornerRadius = 16
@@ -79,10 +79,12 @@ class SearchTextField: UITextField {
         NSLayoutConstraint.activate([
             iconView.heightAnchor.constraint(equalToConstant: 14.65),
             iconView.widthAnchor.constraint(equalToConstant: 14.65),
+            
             customLeftView.heightAnchor.constraint(equalToConstant: 14.65),
             customLeftView.widthAnchor.constraint(equalToConstant: 14.65),
+            
             iconView.leadingAnchor.constraint(equalTo: customLeftView.leadingAnchor, constant: 10),
-
+            
             self.heightAnchor.constraint(equalToConstant: 30),
             self.widthAnchor.constraint(equalToConstant: 303)
         ])

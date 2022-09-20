@@ -9,6 +9,7 @@ import UIKit
 
 class MainViewController: UIViewController {
     
+    //MARK: - View Code
     private lazy var cartButton: UIBarButtonItem = {
         let button = UIBarButtonItem()
         button.image = UIImage(named: "Cart Icon")
@@ -45,8 +46,8 @@ class MainViewController: UIViewController {
     }
 }
 
+//MARK: - UISearchBarDelegate
 extension MainViewController: UISearchBarDelegate {
-    
     private func setupSearchBar(){
         navigationItem.titleView = searchBar
         searchBar.placeholder = "Buscar en Mercado Libre"
@@ -57,7 +58,6 @@ extension MainViewController: UISearchBarDelegate {
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        
         let searchText = searchBar.text?.trimmingCharacters(in: .whitespaces)
         
         guard searchText?.count ?? 0 > 0 else {
