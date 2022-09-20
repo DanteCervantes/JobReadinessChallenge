@@ -21,13 +21,13 @@ class TabBarViewController: UITabBarController {
         let mainVC = UINavigationController(rootViewController: MainViewController())
         mainVC.tabBarItem = UITabBarItem(title: "Inicio", image: UIImage(systemName: "house"), selectedImage: nil)
         
-        let moreVC = UINavigationController(rootViewController: MoreViewController())
-        moreVC.tabBarItem = UITabBarItem(title: "Más", image: UIImage(systemName: "text.justify"), selectedImage: nil)
+        let menuVC = UINavigationController(rootViewController: MenuViewController())
+        menuVC.tabBarItem = UITabBarItem(title: "Más", image: UIImage(systemName: "text.justify"), selectedImage: nil)
         
         tabBar.backgroundColor = .white
         tabBar.layer.borderWidth = 1
         tabBar.layer.borderColor = UIColor.lightGray.cgColor
-        viewControllers = [mainVC, moreVC]
+        viewControllers = [mainVC, menuVC]
     }
     
    
