@@ -38,7 +38,7 @@ class SearchService {
         }
     }
     
-    func getTopTwentyByCategory(categoryId: String, completition: @escaping (TopProducts) -> Void){
+    func getTopTwentyByCategory(categoryId: String, completition: @escaping (TopProducts) -> Void, onError: @escaping (TopProductsError) -> Void){
         let apiURL = "https://api.mercadolibre.com/highlights/MLM/category/\(categoryId)"
         apiClient.get(url: apiURL) { response in
             switch response {
@@ -49,7 +49,12 @@ class SearchService {
                         completition(dataObject)
                     }
                 } catch {
-                    fatalError(String(data: data!, encoding: .utf8)!)
+                    do {
+                        let dataObject = try JSONDecoder().decode(TopProductsError.self, from: data!)
+                        onError(dataObject)
+                    } catch {
+                        fatalError(String(data: data!, encoding: .utf8)!)
+                    }
                 }
             case .failure(let error):
                 print(error)
@@ -68,7 +73,7 @@ class SearchService {
                         completition(jsonData)
                     }
                 } catch {
-
+                    
                     fatalError(String(data: data!, encoding: .utf8)!)
                 }
             case .failure(let error):

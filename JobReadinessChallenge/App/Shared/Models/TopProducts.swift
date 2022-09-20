@@ -16,3 +16,9 @@ class Content: Codable {
     let position: Int
     let type: String
 }
+
+struct TopProductsError: Codable {
+    let error: String
+    let message: String
+    let status: Double
+}

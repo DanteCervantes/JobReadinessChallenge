@@ -49,6 +49,8 @@ class SearchViewModel {
             topProducts.content.removeAll()
             topProducts.content = onlyItemProducts
             completition(topProducts)
+        } onError: { _ in
+            self.delegate?.didFailWithError(error: "La categoria no pudo ser encontrada por favor intente nuevamente.")
         }
     }
     
