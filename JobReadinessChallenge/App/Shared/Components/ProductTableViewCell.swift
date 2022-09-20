@@ -15,7 +15,6 @@ class ProductTableViewCell: UITableViewCell {
         didSet{
             productNameLabel.text = product?.body.title
             productPriceLabel.text = "$\(product?.body.price ?? 0)"
-            //productDescriptionLabel.text = product?.body.description
             productImageView.loadFrom(URLAddress: (product?.body.secure_thumbnail)!)
         }
     }
@@ -24,11 +23,23 @@ class ProductTableViewCell: UITableViewCell {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.layer.cornerRadius = 4
+        imageView.addSubview(favButton)
         return imageView
     }()
     
+    private lazy var favButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.layer.cornerRadius = 14.5
+        button.clipsToBounds = true
+        button.setImage(UIImage(systemName: "heart"), for: .normal)
+        button.backgroundColor = .white
+   
+        return button
+    }()
+    
     private lazy var stackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [productNameLabel,productPriceLabel/*,productDescriptionLabel*/])
+        let stackView = UIStackView(arrangedSubviews: [productNameLabel,productPriceLabel])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
         stackView.distribution = .equalSpacing
@@ -50,14 +61,6 @@ class ProductTableViewCell: UITableViewCell {
         label.font = UIFont.proximaNova20
         return label
     }()
-    
-    /*private lazy var productDescriptionLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.proximaNova11
-        label.textColor = .lightGray
-        return label
-    }()*/
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -82,10 +85,14 @@ class ProductTableViewCell: UITableViewCell {
             productImageView.topAnchor.constraint(equalTo: self.topAnchor, constant: 14),
             productImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 11),
             
+            favButton.heightAnchor.constraint(equalToConstant: 29),
+            favButton.widthAnchor.constraint(equalToConstant: 29),
+            favButton.trailingAnchor.constraint(equalTo: productImageView.trailingAnchor, constant: -6),
+            favButton.topAnchor.constraint(equalTo: productImageView.topAnchor, constant: 6),
+            
             stackView.topAnchor.constraint(equalTo: self.topAnchor, constant: 14),
             stackView.leadingAnchor.constraint(equalTo: productImageView.trailingAnchor, constant: 11),
-            stackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0)
-            
+            stackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0).self
         ])
     }
 }
