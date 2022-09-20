@@ -10,6 +10,13 @@ import UIKit
 class ProductTableViewCell: UITableViewCell {
     
     static let cellId = "cell"
+    var showFavButton: Bool? {
+        didSet {
+            if showFavButton == false {
+                favButton.isHidden = true
+            }
+        }
+    }
     
     var product: ProductDetail? {
         didSet{

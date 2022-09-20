@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol MenuViewDelegate {
+    func didPressFavorites()
+}
+
 class MenuView: UIView {
     
     private lazy var headerView: UIView = {
@@ -63,6 +67,7 @@ class MenuView: UIView {
     }()
     
     let menuService = MenuService()
+    var delegate: MenuViewDelegate?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -136,6 +141,6 @@ extension MenuView: UITableViewDelegate, UITableViewDataSource {
         guard indexPath.item == 4 else {
             return
         }
-        print(menuService.menuItems[indexPath.item].title)
+        delegate?.didPressFavorites()
     }
 }
