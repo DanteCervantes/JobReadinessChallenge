@@ -32,7 +32,7 @@ class FavoritesViewModel {
         searchService.getProductsDetail(ids: getIds(favoriteItems: favoriteProducts!)) { products in
             completition(products)
         } onError: { error in
-        
+            onError(error)
         }
     }
     
