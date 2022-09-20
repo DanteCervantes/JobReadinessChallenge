@@ -62,7 +62,7 @@ class SearchService {
         }
     }
     
-    func getProductsDetail(ids: String, completition: @escaping ([ProductDetail]) -> Void){
+    func getProductsDetail(ids: String, completition: @escaping ([ProductDetail]) -> Void, onError: @escaping(String) -> Void){
         let apiURL = "https://api.mercadolibre.com/items?ids=\(ids)"
         apiClient.get(url: apiURL) { response in
             switch response {
@@ -73,8 +73,14 @@ class SearchService {
                         completition(jsonData)
                     }
                 } catch {
-                    
-                    fatalError(String(data: data!, encoding: .utf8)!)
+                    do {
+                        if let data = data{
+                            let jsonData = try JSONDecoder().decode(TopProductsError.self, from: data)
+                            onError(jsonData.message)
+                        }
+                    } catch {
+                        fatalError(String(data: data!, encoding: .utf8)!)
+                    }
                 }
             case .failure(let error):
                 print(error)

@@ -20,6 +20,7 @@ class FavoriteTableViewController: UITableViewController {
         favoritesViewModel = FavoritesViewModel(service: SearchService())
         searchViewModel = SearchViewModel(service: SearchService())
         detailViewModel = ProductDetailViewModel()
+        searchViewModel.delegate = self
         self.tableView.register(ProductTableViewCell.self, forCellReuseIdentifier: ProductTableViewCell.cellId)
         getFavoritesItems()
     }
@@ -36,6 +37,8 @@ class FavoriteTableViewController: UITableViewController {
             self.favoritesViewModel.getProductDetail { product in
                 self.favoriteItems = product
                 self.tableView.reloadData()
+            } onError: { error in
+                self.didFailWithError(error: error)
             }
         }
     }
@@ -76,5 +79,17 @@ class FavoriteTableViewController: UITableViewController {
             tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
         }
     }
+}
+
+extension FavoriteTableViewController: SearchServiceDelegate {
+    func didFailWithError(error: String) {
+        let alert = UIAlertController(title: "Error", message: error, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { _ in
+            self.navigationController?.popToRootViewController(animated: true)
+        }))
+        self.present(alert, animated: true)
+    }
+    
+    
 }
 

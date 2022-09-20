@@ -21,11 +21,13 @@ class SearchViewModel {
         self.searchService = service
     }
     
-    func getProductsDetail(product: String, completition: @escaping ([ProductDetail]) -> Void){
+    func getProductsDetail(product: String, completition: @escaping ([ProductDetail]) -> Void, onError: @escaping (String) -> Void){
         getCategoryId(product: product) { categoryId in
             self.getTopProducts(categoryId: categoryId) { topProducts in
                 self.getProductsDetail(for: self.getIds(topProducts: topProducts)) { products in
                     completition(products)
+                } onError: { error in
+                    onError(error)
                 }
             }
         }
@@ -57,9 +59,11 @@ class SearchViewModel {
         }
     }
     
-    private func getProductsDetail(for ids: String, completition: @escaping ([ProductDetail]) -> Void){
+    private func getProductsDetail(for ids: String, completition: @escaping ([ProductDetail]) -> Void, onError:  @escaping (String) -> Void) {
         searchService.getProductsDetail(ids: ids) { products in
             completition(products)
+        } onError: { error in
+            onError(error)
         }
     }
     

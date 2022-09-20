@@ -28,9 +28,11 @@ class FavoritesViewModel {
         self.searchService = service
     }
     
-    func getProductDetail(completition: @escaping([ProductDetail]) -> Void){
+    func getProductDetail(completition: @escaping([ProductDetail]) -> Void, onError: @escaping (String) -> Void){
         searchService.getProductsDetail(ids: getIds(favoriteItems: favoriteProducts!)) { products in
             completition(products)
+        } onError: { error in
+        
         }
     }
     

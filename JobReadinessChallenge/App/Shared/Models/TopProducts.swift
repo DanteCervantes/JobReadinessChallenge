@@ -20,5 +20,4 @@ class Content: Codable {
 struct TopProductsError: Codable {
     let error: String
     let message: String
-    let status: Double
 }

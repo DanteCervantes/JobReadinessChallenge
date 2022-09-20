@@ -48,6 +48,8 @@ class SearchTableViewController: UITableViewController {
             self.viewModel.getProductsDetail(product: self.searchText!) { products in
                 self.products = products
                 self.tableView.reloadData()
+            } onError: { error in
+                self.didFailWithError(error: error)
             }
         }
     }
