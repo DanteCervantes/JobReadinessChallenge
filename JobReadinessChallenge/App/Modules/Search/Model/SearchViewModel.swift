@@ -49,8 +49,11 @@ class SearchViewModel {
             topProducts.content.removeAll()
             topProducts.content = onlyItemProducts
             completition(topProducts)
-        } onError: { _ in
-            self.delegate?.didFailWithError(error: "La categoria no pudo ser encontrada por favor intente nuevamente.")
+        } onError: { error in
+            guard error.message != "unspecified_token" else {
+                fatalError("unspecified_token")
+            }
+            self.delegate?.didFailWithError(error: error.message)
         }
     }
     
