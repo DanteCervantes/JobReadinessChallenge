@@ -14,11 +14,12 @@ class MenuViewController: UIViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    
+            
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
         setupConstraints()
+        menuView.delegate = self
     }
     
     //MARK: - Setup View
@@ -34,5 +35,11 @@ class MenuViewController: UIViewController {
             menuView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: 0),
             menuView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 0),
         ])
+    }
+}
+
+extension MenuViewController: MenuViewDelegate {
+    func didPressFavorites() {
+        self.navigationController?.pushViewController(FavoriteTableViewController(), animated: true)
     }
 }

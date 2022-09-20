@@ -34,8 +34,9 @@ class DetailViewController: UIViewController {
     
     private lazy var heartButton: UIBarButtonItem = {
         let button = UIBarButtonItem()
-        button.image = UIImage(systemName: "heart")
         button.tintColor = .black
+        button.target = self
+        button.action = #selector(favoriteButtonPressed)
         return button
     }()
     
@@ -51,11 +52,16 @@ class DetailViewController: UIViewController {
         }
     }
     
+    private var viewModel: ProductDetailViewModel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigationBar()
         setupView()
         setupConstraints()
+        viewModel = ProductDetailViewModel()
+        detailView.delegate = self
+        toggleFavButton()
     }
     
     //MARK: - Setup View
@@ -81,5 +87,32 @@ class DetailViewController: UIViewController {
     //MARK: - Functions
     @objc private func backButtonPressed(){
         navigationController?.popViewController(animated: true)
+    }
+    
+    private func toggleFavButton(){
+        if viewModel.isFavoriteItem(productId: (product?.body.id)!){
+            heartButton.image = UIImage(systemName: "heart.fill")
+            detailView.favoriteButton.configuration?.image = UIImage(systemName: "heart.fill")
+        } else {
+            heartButton.image = UIImage(systemName: "heart")
+            detailView.favoriteButton.configuration?.image = UIImage(systemName: "heart")
+        }
+    }
+        
+    @objc private func favoriteButtonPressed(){
+        guard let productId = product?.body.id else { return }
+        
+        if viewModel.isFavoriteItem(productId: productId) {
+            viewModel.deleteItemToFavorites(productId: productId)
+        } else {
+            viewModel.addItemToFavorites(productId: productId)
+        }
+        toggleFavButton()
+    }
+}
+
+extension DetailViewController: DetailViewDelegate {
+    func favPressed() {
+        favoriteButtonPressed()
     }
 }

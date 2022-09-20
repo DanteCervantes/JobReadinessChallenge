@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol DetailViewDelegate{
+    func favPressed()
+}
+
 class DetailView: UIView {
     
     var product: ProductDetail? {
@@ -15,8 +19,11 @@ class DetailView: UIView {
             mainTitleLabel.text = product!.body.title
             priceLabel.text = "$\(product!.body.price) MXN"
             descriptionLabel.text = product?.body.description
+            toggleFavButton()
         }
     }
+    
+    private var viewModel: ProductDetailViewModel!
     
     private lazy var locationView: LocationView = {
         let view = LocationView()
@@ -120,13 +127,13 @@ class DetailView: UIView {
         return stackView
     }()
     
-    private lazy var favoriteButton: UIButton = {
+    lazy var favoriteButton: UIButton = {
         var configuration = UIButton.Configuration.plain()
         configuration.title = "Agregar a favoritos"
-        configuration.image = UIImage(systemName: "heart")
         configuration.imagePadding = 9.89
         let button = UIButton(configuration: configuration)
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(favPressed), for: .touchUpInside)
         return button
     }()
     
@@ -158,10 +165,13 @@ class DetailView: UIView {
         return label
     }()
     
+    var delegate: DetailViewDelegate?
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
         setupConstraints()
+        viewModel = ProductDetailViewModel()
         carousel.delegate = self
         carousel.dataSource = self
         carousel.register(CarouselCollectionViewCell.self, forCellWithReuseIdentifier: CarouselCollectionViewCell.identifier)
@@ -193,7 +203,7 @@ class DetailView: UIView {
             locationView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 0),
             locationView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0),
             locationView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0),
-                        
+            
             scrollView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             scrollView.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor),
@@ -254,6 +264,20 @@ class DetailView: UIView {
             //TODO: Fix contraint
             descriptionContent.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16)
         ])
+    }
+    
+    //MARK: -Functions:
+    
+    func toggleFavButton(){
+        if viewModel.isFavoriteItem(productId: (product?.body.id)!){
+            favoriteButton.configuration?.image = UIImage(systemName: "heart.fill")
+            
+        } else {
+            favoriteButton.configuration?.image = UIImage(systemName: "heart")
+        }
+    }
+    @objc private func favPressed(){
+        delegate?.favPressed()
     }
 }
 
