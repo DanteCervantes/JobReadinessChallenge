@@ -17,7 +17,7 @@ class DetailView: UIView {
         didSet {
             smallTitleLabel.text = product!.body.title
             mainTitleLabel.text = product!.body.title
-            priceLabel.text = "$\(product!.body.price) MXN"
+            priceLabel.text = "$ \(product!.body.price)"
             descriptionContent.text = product?.body.description
             toggleFavButton()
         }
@@ -64,8 +64,9 @@ class DetailView: UIView {
     private lazy var sellerLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Seller"
-        label.font = .proximaNova11
+        var myMutableString = NSMutableAttributedString(string: "Vendedor con identidad verificada", attributes: [NSAttributedString.Key.font : UIFont.proximaNova11!])
+        myMutableString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.mlBlue!, range: NSRange(location:13,length:20))
+        label.attributedText = myMutableString
         return label
     }()
     
@@ -74,6 +75,8 @@ class DetailView: UIView {
         layout.scrollDirection = .horizontal
         let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collection.translatesAutoresizingMaskIntoConstraints = false
+        collection.showsHorizontalScrollIndicator = false
+        collection.isPagingEnabled = true
         return collection
     }()
     
@@ -295,7 +298,7 @@ extension DetailView: UICollectionViewDelegate, UICollectionViewDataSource {
 //MARK: - UICollectionViewDelegateFlowLayout
 extension DetailView: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let size = UIScreen.main.bounds
+        let size = carousel.frame.size
         return CGSize(width: size.width, height: size.height)
     }
     
