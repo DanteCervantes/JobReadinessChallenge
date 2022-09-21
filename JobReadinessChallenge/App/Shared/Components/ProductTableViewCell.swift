@@ -106,7 +106,7 @@ class ProductTableViewCell: UITableViewCell {
             
             stackView.topAnchor.constraint(equalTo: self.topAnchor, constant: 14),
             stackView.leadingAnchor.constraint(equalTo: productImageView.trailingAnchor, constant: 11),
-            stackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0).self
+            stackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -11).self
         ])
     }
 }
