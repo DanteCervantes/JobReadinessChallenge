@@ -11,6 +11,7 @@ class ProductTableViewCell: UITableViewCell {
     
     static let cellId = "cell"
     
+    
     var showFavButton: Bool? {
         didSet {
             if showFavButton == false {
@@ -22,7 +23,12 @@ class ProductTableViewCell: UITableViewCell {
     var product: ProductDetail? {
         didSet{
             productNameLabel.text = product?.body.title
-            productPriceLabel.text = "$\(product?.body.price ?? 0)"
+            let formatter = NumberFormatter()
+            formatter.locale = Locale.current
+            formatter.numberStyle = .currency
+            if let formattedAmount = formatter.string(for: product?.body.price) {
+                productPriceLabel.text = formattedAmount
+            }
             productImageView.loadFrom(URLAddress: (product?.body.secure_thumbnail)!)
         }
     }
