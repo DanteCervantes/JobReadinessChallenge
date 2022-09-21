@@ -261,7 +261,6 @@ class DetailView: UIView {
             descriptionContent.topAnchor.constraint(equalTo: secondStackView.bottomAnchor, constant: 43),
             descriptionContent.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             descriptionContent.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            //TODO: Fix contraint
             descriptionContent.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16)
         ])
     }

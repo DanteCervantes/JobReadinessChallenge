@@ -15,7 +15,7 @@ class MainView: UIView {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-#warning("gradient")
+    
     private lazy var bannerView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -109,7 +109,7 @@ class MainView: UIView {
             bannerImageView.leadingAnchor.constraint(equalTo: bannerView.leadingAnchor, constant: 12),
             bannerImageView.trailingAnchor.constraint(equalTo: bannerView.trailingAnchor, constant: -12),
             bannerImageView.heightAnchor.constraint(equalToConstant: 169),
-            bannerImageView.topAnchor.constraint(equalTo: bannerView.topAnchor, constant: 30),
+            bannerImageView.topAnchor.constraint(equalTo: bannerView.topAnchor, constant: 22),
             
             shippingView.topAnchor.constraint(equalTo: bannerView.bottomAnchor, constant: 5),
             shippingView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
