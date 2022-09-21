@@ -8,13 +8,13 @@
 import Foundation
 
 class ProductDetailViewModel {
-        
-    private let userDefaults = UserDefaults()
-    private let favoriteItemsKey = "favItems"
+    
     private var favoriteProducts: [String]?
+    private let defaultKey = "favoriteProducts"
+    private var  defaults = UserDefaults.standard.array(forKey: "favoriteProducts") as? [String]
     
     init(){
-        favoriteProducts = userDefaults.value(forKey: favoriteItemsKey) as? [String]
+        favoriteProducts = defaults
     }
     
     func isFavoriteItem(productId: String) -> Bool {
@@ -26,13 +26,13 @@ class ProductDetailViewModel {
     
     func addItemToFavorites(productId: String){
         favoriteProducts?.append(productId)
-        userDefaults.set(favoriteProducts, forKey: favoriteItemsKey)
+        UserDefaults.standard.set(favoriteProducts, forKey: defaultKey)
     }
     
     func deleteItemToFavorites(productId: String) {
         let itemIndex = favoriteProducts?.firstIndex(of: productId)
         favoriteProducts?.remove(at: itemIndex!)
-        userDefaults.set(favoriteProducts, forKey: favoriteItemsKey)
+        UserDefaults.standard.set(favoriteProducts, forKey: defaultKey)
     }
 }
 
