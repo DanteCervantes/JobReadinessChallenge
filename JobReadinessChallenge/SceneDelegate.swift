@@ -19,13 +19,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.rootViewController = mainViewController
         window?.makeKeyAndVisible()
         setupUserDefaults()
+        UserDefaults.standard.set("APP_USR-1462408046297250-092115-91cdf58dc960ada713da60b585c8f775-433416088", forKey: "AuthToken")
     }
     
     private func setupUserDefaults(){
-        let wasInitialized = UserDefaults.standard.bool(forKey: "favoriteProducts")
-        guard wasInitialized else { return }
+        let wasInitialized = UserDefaults.standard.object(forKey: "favoriteProducts") != nil
+        guard !wasInitialized else { return }
         UserDefaults.standard.set([], forKey: "favoriteProducts")
-        UserDefaults.standard.set("APP_USR-1462408046297250-092115-91cdf58dc960ada713da60b585c8f775-433416088", forKey: "AuthToken")
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
