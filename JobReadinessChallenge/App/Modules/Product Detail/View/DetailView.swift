@@ -18,7 +18,7 @@ class DetailView: UIView {
             smallTitleLabel.text = product!.body.title
             mainTitleLabel.text = product!.body.title
             priceLabel.text = "$\(product!.body.price) MXN"
-            descriptionLabel.text = product?.body.description
+            descriptionContent.text = product?.body.description
             toggleFavButton()
         }
     }
@@ -258,7 +258,7 @@ class DetailView: UIView {
             descriptionLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             descriptionLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             
-            descriptionContent.topAnchor.constraint(equalTo: secondStackView.bottomAnchor, constant: 43),
+            descriptionContent.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 24),
             descriptionContent.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             descriptionContent.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             descriptionContent.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16)
