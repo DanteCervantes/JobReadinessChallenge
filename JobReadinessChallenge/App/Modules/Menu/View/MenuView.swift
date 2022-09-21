@@ -64,6 +64,7 @@ class MenuView: UIView {
     private lazy var menuTableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.separatorStyle = .none
         return tableView
     }()
     

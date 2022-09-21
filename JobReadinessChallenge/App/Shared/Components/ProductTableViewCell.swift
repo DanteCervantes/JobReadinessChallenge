@@ -48,7 +48,7 @@ class ProductTableViewCell: UITableViewCell {
         button.layer.cornerRadius = 14.5
         button.clipsToBounds = true
         button.setImage(UIImage(systemName: "heart"), for: .normal)
-        button.backgroundColor = .white
+        button.backgroundColor = .whiteOpacity
         return button
     }()
     
@@ -98,6 +98,7 @@ class ProductTableViewCell: UITableViewCell {
             productImageView.widthAnchor.constraint(equalToConstant: 131),
             productImageView.topAnchor.constraint(equalTo: self.topAnchor, constant: 14),
             productImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 11),
+            productImageView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -13),
             
             favButton.heightAnchor.constraint(equalToConstant: 29),
             favButton.widthAnchor.constraint(equalToConstant: 29),

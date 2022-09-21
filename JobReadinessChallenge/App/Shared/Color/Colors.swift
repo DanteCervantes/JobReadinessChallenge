@@ -12,4 +12,5 @@ extension UIColor {
     static let mlSecondaryYellow = UIColor(named: "mlSecondaryYellow")
     static let appBackground = UIColor(named: "App Background")
     static let mlBlue = UIColor(named: "ML Blue")
+    static let whiteOpacity = UIColor(named: "WhiteOpacity")
 }
