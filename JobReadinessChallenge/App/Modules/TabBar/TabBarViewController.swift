@@ -22,9 +22,12 @@ class TabBarViewController: UITabBarController {
         let menuVC = UINavigationController(rootViewController: MenuViewController())
         menuVC.tabBarItem = UITabBarItem(title: "Más", image: UIImage(systemName: "text.justify"), selectedImage: nil)
         
+        let favVC = UINavigationController(rootViewController: FavoriteTableViewController())
+        favVC.tabBarItem = UITabBarItem(title: "Favoritos", image: UIImage(systemName: "heart"), selectedImage: nil)
+        
         tabBar.backgroundColor = .white
         tabBar.layer.borderWidth = 1
         tabBar.layer.borderColor = UIColor.lightGray.cgColor
-        viewControllers = [mainVC, menuVC]
+        viewControllers = [mainVC, favVC, menuVC]
     }
 }
