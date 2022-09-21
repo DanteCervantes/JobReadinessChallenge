@@ -23,6 +23,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     private func setupUserDefaults(){
         UserDefaults.standard.set([], forKey: "favoriteProducts")
+        UserDefaults.standard.set("APP_USR-1462408046297250-092115-91cdf58dc960ada713da60b585c8f775-433416088", forKey: "AuthToken")
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
