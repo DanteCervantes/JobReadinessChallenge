@@ -70,7 +70,7 @@ class CategoryCollectionViewCell: UICollectionViewCell {
             categoryImageView.centerXAnchor.constraint(equalTo: imageContainer.centerXAnchor),
             
             titleLabel.bottomAnchor.constraint(equalTo: self.contentView.safeAreaLayoutGuide.bottomAnchor, constant: 0),
-            titleLabel.centerXAnchor.constraint(equalTo: imageContainer.centerXAnchor)
+            titleLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor)
         ])
     }
 }

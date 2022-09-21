@@ -60,10 +60,13 @@ class MainView: UIView {
         return label
     }()
     
+    private lazy var flowLayout: UICollectionViewFlowLayout = {
+        let flowLayout = UICollectionViewFlowLayout()
+        return flowLayout
+    }()
+    
     private lazy var categoriesCollection: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
-        let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        let collection = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
         collection.translatesAutoresizingMaskIntoConstraints = false
         return collection
     }()
@@ -136,7 +139,7 @@ class MainView: UIView {
             staticBannerImageView.heightAnchor.constraint(equalToConstant: 96)
         ])
     }
-#warning("set equal spacing")
+
     private func setupCollectionView(){
         categoriesCollection.delegate = self
         categoriesCollection.dataSource = self
