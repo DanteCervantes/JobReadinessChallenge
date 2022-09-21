@@ -24,7 +24,6 @@ class FavoriteTableViewController: UITableViewController {
         self.tableView.register(ProductTableViewCell.self, forCellReuseIdentifier: ProductTableViewCell.cellId)
         getFavoritesItems()
     }
-    #warning("Reload Table")
     
     //MARK: - SetupView
     private func setupView(){

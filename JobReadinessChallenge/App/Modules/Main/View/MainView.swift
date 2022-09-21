@@ -155,7 +155,12 @@ extension MainView: UICollectionViewDelegate, UICollectionViewDataSource, UIColl
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 56, height: 70)
+        let viewWidth = self.frame.width
+        let marginView = 34
+        let itemsPerRow = 5
+        let internalSpacing = 10
+        let val = (Int(viewWidth) - marginView) / itemsPerRow - internalSpacing
+        return CGSize(width: val, height: 70)
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

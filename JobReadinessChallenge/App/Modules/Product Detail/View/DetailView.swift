@@ -91,8 +91,9 @@ class DetailView: UIView {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .horizontal
-        stackView.distribution = .equalSpacing
         stackView.alignment = .center
+        stackView.distribution = .equalSpacing
+        stackView.spacing = 9
         stackView.addArrangedSubview(askButton)
         stackView.addArrangedSubview(whatsappButton)
         return stackView
@@ -124,8 +125,9 @@ class DetailView: UIView {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .horizontal
-        stackView.distribution = .equalSpacing
-        stackView.alignment = .center
+        stackView.alignment = .fill
+        stackView.distribution = .fill
+        stackView.spacing = 21
         stackView.addArrangedSubview(favoriteButton)
         stackView.addArrangedSubview(shareButton)
         return stackView
@@ -240,8 +242,10 @@ class DetailView: UIView {
             priceLabel.heightAnchor.constraint(equalToConstant: 45),
             
             firstStackView.topAnchor.constraint(equalTo: priceLabel.bottomAnchor, constant: 25),
-            firstStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            firstStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            firstStackView.leadingAnchor.constraint(greaterThanOrEqualTo: self.leadingAnchor, constant: 16),
+            firstStackView.trailingAnchor.constraint(greaterThanOrEqualTo: self.leadingAnchor, constant: -16),
+            firstStackView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            firstStackView.widthAnchor.constraint(greaterThanOrEqualToConstant: 342),
             
             askButton.heightAnchor.constraint(equalToConstant: 48),
             askButton.widthAnchor.constraint(equalToConstant: 167),
@@ -250,8 +254,10 @@ class DetailView: UIView {
             whatsappButton.widthAnchor.constraint(equalToConstant: 167),
             
             secondStackView.topAnchor.constraint(equalTo: firstStackView.bottomAnchor, constant: 34),
-            secondStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            secondStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            secondStackView.leadingAnchor.constraint(greaterThanOrEqualTo: self.leadingAnchor, constant: 16),
+            secondStackView.trailingAnchor.constraint(greaterThanOrEqualTo: self.leadingAnchor, constant: -16),
+            secondStackView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            secondStackView.widthAnchor.constraint(greaterThanOrEqualToConstant: 342),
             
             favoriteButton.heightAnchor.constraint(equalToConstant: 18),
             
