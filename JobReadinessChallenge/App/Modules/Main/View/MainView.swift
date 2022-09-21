@@ -62,6 +62,7 @@ class MainView: UIView {
     
     private lazy var flowLayout: UICollectionViewFlowLayout = {
         let flowLayout = UICollectionViewFlowLayout()
+        flowLayout.scrollDirection = .horizontal
         return flowLayout
     }()
     
